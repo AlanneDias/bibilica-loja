@@ -223,6 +223,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 820px) {
   .abertura .wrap { grid-template-columns: 1fr; padding-block: 32px; }
   .abertura .laco { width: 260px; order: -1; }
+  .abertura .wrap:has(> .titulo-logo) { padding-block: 14px; }
+  .abertura .logo-abertura { width: auto; height: clamp(200px, 32vw, 280px); }
   .abertura .cartao { padding: 28px 22px; }
   .passos ol { grid-template-columns: 1fr; }
   .grade { grid-template-columns: 1fr; gap: 28px; }
