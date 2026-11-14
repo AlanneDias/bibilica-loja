@@ -63,8 +63,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .abertura .wrap { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 24px; padding-block: 56px 48px; }
 .abertura .cartao { background: var(--papel); padding: 40px 40px 36px; border-radius: 4px; box-shadow: 0 1px 0 var(--rosa), 0 18px 40px -24px rgba(96,58,48,.35); position: relative; }
 .abertura .cartao::after { content: ""; position: absolute; inset: 8px; border: 1px dashed var(--rosa); border-radius: 2px; pointer-events: none; }
-.abertura h1 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
-.abertura h1 em { font-style: italic; }
+.abertura h1, .abertura h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
+.abertura h1 em, .abertura h2 em { font-style: italic; }
+.abertura .wrap:has(> .titulo-logo) { grid-template-columns: 1fr; justify-items: center; padding-block: 40px; }
+.titulo-logo { margin: 0; line-height: 0; display: flex; justify-content: center; }
+.manifesto .wrap { grid-template-columns: 1fr; justify-items: center; padding-block: 64px; }
+.manifesto .cartao { max-width: 760px; text-align: center; }
+.manifesto .cartao p { margin-left: auto; margin-right: auto; }
 .abertura p { max-width: 52ch; color: var(--taupe); margin: 16px 0 0; }
 .abertura .assinatura { margin-top: 20px; font-family: var(--font-display); font-style: italic; color: var(--marrom); }
 .abertura .laco { justify-self: center; width: min(420px, 100%); filter: drop-shadow(0 10px 18px rgba(96,58,48,.12)); }
@@ -252,12 +257,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <main id="inicio">
   <section class="abertura">
     <div class="wrap">
-      <div class="cartao">
-        <h1>Vestir criança como criança é vestir a infância de <em>encanto, leveza e liberdade.</em></h1>
-        <p>É valorizar o clássico, o delicado e cada detalhe feito à mão, respeitando a beleza de ser criança.</p>
-        <p class="assinatura">Escolha suas peças, monte o carrinho e finalize com a gente pelo WhatsApp.</p>
-      </div>
-      <img class="laco logo-abertura" src="assets/logo.png" alt="Bibilica Boutique Infantil" width="900" height="876">
+      <h1 class="titulo-logo"><img class="laco logo-abertura" src="assets/logo.png" alt="Bibilica Boutique Infantil" width="900" height="876"></h1>
     </div>
   </section>
 
@@ -306,6 +306,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <p class="contagem" id="contagem" role="status"></p>
       </div>
       <div class="grade" id="grade"></div>
+    </div>
+  </section>
+  <section class="abertura manifesto" aria-label="Nossa essência">
+    <div class="wrap">
+      <div class="cartao">
+        <h2>Vestir criança como criança é vestir a infância de <em>encanto, leveza e liberdade.</em></h2>
+        <p>É valorizar o clássico, o delicado e cada detalhe feito à mão, respeitando a beleza de ser criança.</p>
+        <p class="assinatura">Escolha suas peças, monte o carrinho e finalize com a gente pelo WhatsApp.</p>
+      </div>
     </div>
   </section>
 </main>
