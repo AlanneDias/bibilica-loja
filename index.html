@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="assets/laco.png">
+<title>Bibilica Boutique Infantil</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bibilica Boutique Infantil: roupas clássicas com bordado feito à mão. Monte seu carrinho e finalize pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: vitrine de boutique. Faixa xadrez rosa no topo, cartões de peça em papel marfim, rodapé verde-oliva com os cuidados. Tema único (identidade da marca). */
+:root {
+  --marrom: #603A30;      /* 01 Marrom profundo: texto e botões */
+  --taupe: #80685D;       /* 02 Marrom taupe: texto secundário */
+  --oliva: #A6AD91;       /* 03 Verde-oliva suave: rodapé */
+  --oliva-escuro: #7E8669;
+  --rosa: #E8C4C8;        /* 04 Rosa antigo: linhas e chips */
+  --petala: #F2D2DC;      /* 05 Rosa-pétala: faixas */
+  --marfim: #F8F2EB;      /* 06 Marfim: fundo */
+  --papel: #FFFCF8;
+  --font-display: "Bodoni Moda", "Didot", "Times New Roman", serif;
+  --font-sans: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--marfim); color: var(--marrom); font-family: var(--font-sans); font-size: 16px; line-height: 1.6; font-weight: 400; }
+img { max-width: 100%; height: auto; display: block; }
+button, input, textarea { font: inherit; color: inherit; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--marrom); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+.eyebrow { font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .28em; font-size: .72rem; font-weight: 500; color: var(--taupe); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; margin: 0; line-height: 1.15; }
+
+/* Cabeçalho */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--marfim); }
+.topo { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--marfim) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--rosa); }
+.topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 8px; }
+.topo .marca img { height: 58px; width: auto; }
+.topo nav { display: flex; align-items: center; gap: 22px; }
+.topo nav a.link { text-decoration: none; text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--taupe); }
+.topo nav a.link:hover { color: var(--marrom); }
+.btn-sacola { display: inline-flex; align-items: center; gap: 10px; background: var(--marrom); color: var(--marfim); border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; font-weight: 500; }
+.btn-sacola .qtd { background: var(--petala); color: var(--marrom); border-radius: 999px; min-width: 22px; height: 22px; display: inline-grid; place-items: center; font-size: .75rem; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.btn-sacola { padding: 8px 14px 8px 12px; }
+.icone-carrinho { width: 36px; height: 36px; display: block; }
+.icone-carrinho .cesto { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.icone-carrinho circle { fill: currentColor; }
+.icone-carrinho .coracao { fill: var(--petala); stroke: var(--marrom); stroke-width: .5; }
+.btn-sacola.pulse { animation: pulse .5s ease; }
+@keyframes pulse { 50% { transform: scale(1.08); } }
+
+/* Abertura */
+.abertura { background-color: var(--petala); background-image:
+  repeating-linear-gradient(0deg, rgba(255,255,255,.38) 0 18px, transparent 18px 36px),
+  repeating-linear-gradient(90deg, rgba(255,255,255,.38) 0 18px, transparent 18px 36px); }
+.abertura .wrap { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 24px; padding-block: 56px 48px; }
+.abertura .cartao { background: var(--papel); padding: 40px 40px 36px; border-radius: 4px; box-shadow: 0 1px 0 var(--rosa), 0 18px 40px -24px rgba(96,58,48,.35); position: relative; }
+.abertura .cartao::after { content: ""; position: absolute; inset: 8px; border: 1px dashed var(--rosa); border-radius: 2px; pointer-events: none; }
+.abertura h1 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); }
+.abertura h1 em { font-style: italic; }
+.abertura p { max-width: 52ch; color: var(--taupe); margin: 16px 0 0; }
+.abertura .assinatura { margin-top: 20px; font-family: var(--font-display); font-style: italic; color: var(--marrom); }
+.abertura .laco { justify-self: center; width: min(420px, 100%); filter: drop-shadow(0 10px 18px rgba(96,58,48,.12)); }
+
+/* Faixa de pagamento */
+.condicoes { background: var(--marrom); color: var(--marfim); }
+.condicoes .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 36px; padding-block: 14px; text-transform: uppercase; letter-spacing: .18em; font-size: .72rem; }
+.condicoes strong { font-weight: 500; color: var(--petala); }
+
+/* Como comprar */
+.passos .wrap { padding-block: 56px 8px; }
+.passos ol { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: p; }
+.passos li { counter-increment: p; border-top: 1px solid var(--rosa); padding-top: 16px; min-width: 0; }
+.passos li::before { content: counter(p); font-family: var(--font-display); font-size: 2rem; line-height: 1; display: block; margin-bottom: 8px; color: var(--taupe); }
+.passos li b { display: block; font-weight: 500; text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; margin-bottom: 4px; }
+.passos li span { color: var(--taupe); font-size: .95rem; }
+.titulo-secao { display: flex; flex-direction: column; gap: 6px; }
+.titulo-secao h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+
+/* Vitrine */
+.vitrine .wrap { padding-block: 48px 72px; }
+.ramo { width: 240px; margin: 0 auto 8px; opacity: .95; }
+.vitrine .titulo-secao { align-items: center; text-align: center; }
+.grade { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
+@media (max-width: 1040px) { .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.peca { background: var(--papel); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 0 var(--rosa); }
+.peca .foto { aspect-ratio: 4 / 5; background: var(--petala); overflow: hidden; position: relative; }
+.peca .foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.peca:hover .foto img { transform: scale(1.03); }
+.galeria { display: flex; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.galeria::-webkit-scrollbar { display: none; }
+.galeria img { flex: 0 0 100%; scroll-snap-align: start; }
+.peca:hover .galeria img { transform: none; }
+.seta { position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,252,248,.88); color: var(--marrom); font-size: 1.2rem; line-height: 1; cursor: pointer; display: grid; place-items: center; box-shadow: 0 2px 8px -3px rgba(96,58,48,.4); }
+.seta:hover { background: var(--oliva); color: #fff; }
+.seta.ant { left: 10px; } .seta.prox { right: 10px; }
+.pontos { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center; gap: 6px; pointer-events: none; }
+.pontos span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,252,248,.6); box-shadow: 0 0 0 1px rgba(96,58,48,.25); }
+.pontos span.ativo { background: #fff; transform: scale(1.25); }
+.qtd-fotos { position: absolute; right: 14px; bottom: 12px; background: rgba(96,58,48,.75); color: #fff; font-size: .7rem; padding: 3px 8px; border-radius: 999px; display: none; }
+.peca .ref { position: absolute; left: 14px; top: 14px; background: var(--oliva); padding: 5px 12px; border-radius: 999px; font-size: .7rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 1px rgba(75,90,51,.35); box-shadow: 0 2px 6px -2px rgba(96,58,48,.3); }
+.peca .info { padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.peca h3 { font-size: 1.6rem; }
+.peca .desc { color: var(--taupe); font-size: .95rem; margin: 0; }
+.precos { display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.precos .cartao-v { font-size: 1.25rem; font-weight: 500; }
+.precos .parc { color: var(--taupe); font-size: .88rem; }
+.precos .pix { font-size: .92rem; }
+.precos .pix b { font-weight: 500; }
+.rotulo { font-size: .7rem; text-transform: uppercase; letter-spacing: .22em; color: var(--taupe); margin-bottom: 8px; display: block; }
+.tamanhos { display: flex; flex-wrap: wrap; gap: 8px; border: 0; padding: 0; margin: 0; }
+.tamanhos legend { padding: 0; }
+.tamanhos label { position: relative; }
+.tamanhos input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.tamanhos span { display: inline-grid; place-items: center; min-width: 48px; height: 40px; padding: 0 10px; border: 1px solid var(--rosa); border-radius: 999px; font-size: .9rem; background: var(--papel); transition: background .15s, border-color .15s; }
+.tamanhos input:checked + span { background: var(--marrom); color: var(--marfim); border-color: var(--marrom); }
+.tamanhos input:focus-visible + span { outline: 2px solid var(--marrom); outline-offset: 2px; }
+.tamanhos label:hover span { border-color: var(--marrom); }
+.acoes { display: flex; gap: 10px; align-items: stretch; margin-top: auto; flex-wrap: wrap; }
+.contador { display: inline-flex; align-items: center; border: 1px solid var(--rosa); border-radius: 999px; overflow: hidden; }
+.contador button { background: none; border: 0; width: 38px; height: 44px; cursor: pointer; font-size: 1.1rem; color: var(--marrom); }
+.contador button:disabled { opacity: .3; cursor: not-allowed; }
+.contador output { min-width: 22px; text-align: center; font-variant-numeric: tabular-nums; }
+.btn { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border: 0; border-radius: 999px; background: var(--marrom); color: var(--marfim); cursor: pointer; letter-spacing: .02em; font-size: .88rem; font-weight: 500; padding: 12px 14px; transition: background .2s; }
+.btn:hover:not(:disabled), .btn:focus-visible { background: var(--oliva); color: #fff; }
+.btn-sacola { transition: background .2s; }
+.btn-sacola:hover { background: var(--oliva); }
+.aviso { min-height: 1.3em; font-size: .85rem; margin: 0; color: var(--taupe); }
+.aviso.erro { color: #A2453A; }
+.filtros { margin-top: 32px; display: grid; gap: 14px; justify-items: center; }
+.filtro { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.filtro legend { float: left; margin-right: 6px; padding: 0; font-size: .68rem; text-transform: uppercase; letter-spacing: .22em; color: var(--taupe); }
+.filtro button { background: var(--papel); border: 1px solid var(--rosa); color: var(--marrom); border-radius: 999px; padding: 8px 16px; cursor: pointer; font-size: .85rem; }
+.filtro button:hover { border-color: var(--marrom); }
+.filtro button[aria-pressed="true"] { background: var(--marrom); border-color: var(--marrom); color: var(--marfim); }
+.contagem { font-size: .85rem; color: var(--taupe); margin: 0; }
+.sem-resultado { grid-column: 1 / -1; text-align: center; color: var(--taupe); padding: 32px 0; }
+.peca[hidden] { display: none; }
+.tamanhos input:disabled + span { color: #b9a7a0; border-style: dashed; text-decoration: line-through; background: transparent; }
+.tamanhos label:has(input:disabled) { cursor: not-allowed; }
+.tamanhos label:has(input:disabled):hover span { border-color: var(--rosa); }
+.estoque-msg { font-size: .82rem; color: #A2453A; margin: -4px 0 0; min-height: 1.2em; }
+.selo { position: absolute; right: 14px; top: 14px; background: var(--marrom); color: var(--marfim); padding: 4px 10px; border-radius: 999px; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; }
+.peca.esgotada .foto img { filter: grayscale(.6) opacity(.7); }
+.btn:disabled { background: #b9a7a0; cursor: not-allowed; }
+
+/* Rodapé */
+.rodape { background: var(--oliva); color: #fff; }
+.rodape .wrap { padding-block: 56px 32px; }
+.rodape .colunas { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; }
+.rodape .logo-b { width: 220px; height: auto; }
+.rodape .sub { text-transform: uppercase; letter-spacing: .32em; font-size: .7rem; margin-top: 10px; }
+.rodape .frase { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; line-height: 1.55; margin: 28px 0 0; max-width: 40ch; }
+.rodape h2 { font-family: var(--font-sans); font-weight: 500; text-transform: uppercase; letter-spacing: .26em; font-size: .82rem; }
+.rodape .intro { margin: 10px 0 14px; max-width: 52ch; }
+.rodape ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.rodape li { display: flex; gap: 12px; align-items: baseline; }
+.rodape li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--petala); flex: none; transform: translateY(-2px); }
+.rodape .amor { font-family: var(--font-display); font-style: italic; margin-top: 18px; }
+.rodape .credito a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.rodape .credito a:hover { color: var(--petala); }
+.rodape .base { margin-top: 44px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.4); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: .78rem; letter-spacing: .08em; }
+
+/* Sacola (gaveta) */
+.fundo { position: fixed; inset: 0; background: rgba(96,58,48,.35); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .25s; }
+.fundo.aberto { opacity: 1; pointer-events: auto; }
+.sacola { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100%); background: var(--marfim); z-index: 50; display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s ease; box-shadow: -20px 0 40px -20px rgba(96,58,48,.4);
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.sacola.aberta { transform: none; }
+.sacola header { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--rosa); }
+.sacola header h2 { font-size: 1.5rem; }
+.fechar { background: none; border: 1px solid var(--rosa); border-radius: 999px; width: 38px; height: 38px; cursor: pointer; font-size: 1.1rem; }
+.sacola .corpo { flex: 1; overflow-y: auto; padding: 8px 22px 20px; }
+.item { display: grid; grid-template-columns: 72px 1fr auto; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--rosa); align-items: start; }
+.item img { width: 72px; height: 90px; object-fit: cover; border-radius: 3px; }
+.item .nome { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.25; }
+.item .det { font-size: .82rem; color: var(--taupe); }
+.item .contador { margin-top: 8px; }
+.item .contador button { width: 32px; height: 32px; }
+.item .preco { text-align: right; font-variant-numeric: tabular-nums; font-size: .95rem; }
+.item .remover { background: none; border: 0; color: var(--taupe); font-size: .78rem; text-decoration: underline; cursor: pointer; padding: 6px 0 0; }
+.vazia { text-align: center; padding: 48px 8px; color: var(--taupe); }
+.vazia img { width: 140px; margin: 0 auto 12px; }
+.totais { margin-top: 18px; display: grid; gap: 6px; font-variant-numeric: tabular-nums; }
+.totais div { display: flex; justify-content: space-between; gap: 12px; }
+.totais .grande { font-size: 1.15rem; font-weight: 500; }
+.totais .menor { color: var(--taupe); font-size: .88rem; }
+.totais .frete { color: var(--taupe); font-size: .85rem; font-style: italic; }
+.dados { margin-top: 22px; display: grid; gap: 12px; }
+.dados label { display: grid; gap: 4px; font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--taupe); }
+.dados input, .dados textarea { background: var(--papel); border: 1px solid var(--rosa); border-radius: 6px; padding: 10px 12px; font-size: .95rem; text-transform: none; letter-spacing: 0; color: var(--marrom); }
+.dados textarea { resize: vertical; min-height: 64px; }
+.opcoes { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; min-width: 0; }
+.opcoes legend, .dados label { font-size: .72rem; text-transform: uppercase; letter-spacing: .18em; color: var(--taupe); padding: 0; margin-bottom: 4px; }
+.obrig { text-transform: none; letter-spacing: 0; font-size: .75rem; color: var(--oliva-escuro); margin-left: 4px; }
+.dados .opcao { display: flex; align-items: center; gap: 12px; background: var(--papel); border: 1px solid var(--rosa); border-radius: 8px; padding: 10px 12px; cursor: pointer; text-transform: none; letter-spacing: 0; color: var(--marrom); font-size: .95rem; margin: 0; }
+.opcao input { width: 18px; height: 18px; accent-color: var(--marrom); flex: none; margin: 0; }
+.opcao span { display: grid; line-height: 1.3; }
+.opcao b { font-weight: 500; }
+.opcao small { color: var(--taupe); font-size: .8rem; }
+.opcao:has(input:checked) { border-color: var(--marrom); background: #fff; box-shadow: inset 0 0 0 1px var(--marrom); }
+.invalido, .invalido .opcao { border-color: #A2453A !important; }
+.faltando { margin: 0; color: #A2453A; font-size: .88rem; background: #FBEDEB; border-radius: 6px; padding: 10px 12px; }
+.sacola footer { padding: 16px 22px 20px; border-top: 1px solid var(--rosa); background: var(--papel); }
+.btn-whats { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; text-decoration: none; background: var(--oliva-escuro); color: #fff; border-radius: 999px; padding: 15px 20px; text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 500; }
+.btn-whats:hover { background: #6b7358; }
+.btn-whats[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.btn-whats svg { width: 20px; height: 20px; fill: currentColor; }
+.sacola footer small { display: block; text-align: center; color: var(--taupe); margin-top: 10px; font-size: .78rem; }
+
+@media (max-width: 820px) {
+  .abertura .wrap { grid-template-columns: 1fr; padding-block: 32px; }
+  .abertura .laco { width: 260px; order: -1; }
+  .abertura .cartao { padding: 28px 22px; }
+  .passos ol { grid-template-columns: 1fr; }
+  .grade { grid-template-columns: 1fr; gap: 28px; }
+  .rodape .colunas { grid-template-columns: 1fr; gap: 36px; }
+  .topo nav a.link { display: none; }
+  .topo .marca img { height: 48px; }
+  .tamanhos { gap: 6px; }
+  .tamanhos span { min-width: 42px; padding: 0 8px; }
+}
+@media (max-width: 400px) {
+  .acoes .contador button { width: 32px; }
+  .btn { font-size: .82rem; padding: 12px 10px; }
+}
+@media (max-width: 340px) { .btn { flex-basis: 100%; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Bibilica Boutique Infantil, início"><img src="assets/laco.png" alt="Bibilica Boutique Infantil" width="800" height="841"></a>
+    <nav>
+      <a class="link" href="#pecas">Peças</a>
+      <a class="link" href="#cuidados">Cuidados</a>
+      <button class="btn-sacola" id="abrir-sacola" type="button" aria-controls="sacola" aria-label="Abrir carrinho"><svg class="icone-carrinho" viewBox="0 0 32 32" aria-hidden="true"><path class="cesto" d="M2 5h4l3.2 15.5h15.6L28 9.5H8.3"/><path class="cesto" d="M9.2 20.5 8 24h17"/><circle cx="11" cy="27" r="2"/><circle cx="23" cy="27" r="2"/><path class="coracao" transform="translate(8.6 11.4) scale(.82)" d="M5 9C5 9 0 6 0 3a2.5 2.5 0 0 1 5-.8A2.5 2.5 0 0 1 10 3c0 3-5 6-5 6Z"/><path class="coracao" transform="translate(13.6 5.6) scale(1.02)" d="M5 9C5 9 0 6 0 3a2.5 2.5 0 0 1 5-.8A2.5 2.5 0 0 1 10 3c0 3-5 6-5 6Z"/><path class="coracao" transform="translate(20.2 10.8) scale(.76)" d="M5 9C5 9 0 6 0 3a2.5 2.5 0 0 1 5-.8A2.5 2.5 0 0 1 10 3c0 3-5 6-5 6Z"/></svg><span class="qtd" id="qtd-sacola">0</span></button>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="abertura">
+    <div class="wrap">
+      <div class="cartao">
+        <h1>Vestir criança como criança é vestir a infância de <em>encanto, leveza e liberdade.</em></h1>
+        <p>É valorizar o clássico, o delicado e cada detalhe feito à mão, respeitando a beleza de ser criança.</p>
+        <p class="assinatura">Escolha suas peças, monte o carrinho e finalize com a gente pelo WhatsApp.</p>
+      </div>
+      <img class="laco logo-abertura" src="assets/logo.png" alt="Bibilica Boutique Infantil" width="900" height="876">
+    </div>
+  </section>
+
+  <div class="condicoes" role="note">
+    <div class="wrap">
+      <span>Cartão em <strong>3x sem juros</strong></span>
+      <span>Pix ou espécie com <strong>5% de desconto</strong></span>
+      <span>Frete combinado pelo WhatsApp</span>
+    </div>
+  </div>
+
+  <section class="passos" aria-labelledby="como">
+    <div class="wrap">
+      <div class="titulo-secao">
+        <span class="eyebrow">Como comprar</span>
+        <h2 id="como">Simples como uma conversa</h2>
+      </div>
+      <ol>
+        <li><b>Escolha</b><span>Selecione o tamanho e a quantidade de cada peça e coloque no carrinho.</span></li>
+        <li><b>Envie</b><span>No carrinho, toque em “Enviar pedido pelo WhatsApp”. A mensagem já vai pronta.</span></li>
+        <li><b>Finalize</b><span>Respondemos com o valor do frete e combinamos a forma de pagamento.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="vitrine" id="pecas" aria-labelledby="titulo-pecas">
+    <div class="wrap">
+      <img class="ramo" src="assets/ramo.png" alt="" width="700" height="187">
+      <div class="titulo-secao">
+        <span class="eyebrow">Coleção</span>
+        <h2 id="titulo-pecas">Nossas peças</h2>
+      </div>
+      <div class="filtros">
+        <fieldset class="filtro" id="filtro-tipo"><legend>Peça</legend>
+          <button type="button" data-v="todas" aria-pressed="true">Todas</button>
+          <button type="button" data-v="Vestido" aria-pressed="false">Vestidos</button>
+          <button type="button" data-v="Conjunto" aria-pressed="false">Conjuntos</button>
+          <button type="button" data-v="Romper" aria-pressed="false">Rompers</button>
+        </fieldset>
+        <fieldset class="filtro" id="filtro-tam"><legend>Tamanho</legend>
+          <button type="button" data-v="todos" aria-pressed="true">Todos</button>
+          <button type="button" data-v="bebe" aria-pressed="false">Bebê (P, M, G)</button>
+          <button type="button" data-v="1a3" aria-pressed="false">1 a 3 anos</button>
+          <button type="button" data-v="4a7" aria-pressed="false">4 a 7 anos</button>
+        </fieldset>
+        <p class="contagem" id="contagem" role="status"></p>
+      </div>
+      <div class="grade" id="grade"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape" id="cuidados">
+  <div class="wrap">
+    <div class="colunas">
+      <div>
+        <img class="logo-b" src="assets/logo-branco.png" alt="Bibilica" width="674" height="181">
+        <div class="sub">Boutique infantil</div>
+        <p class="frase">“Vestir criança como criança é vestir a infância de encanto, leveza e liberdade. É valorizar o clássico, o delicado e cada detalhe feito à mão, respeitando a beleza de ser criança.”</p>
+      </div>
+      <div>
+        <h2>Cuidados com sua peça</h2>
+        <p class="intro">Bordados manuais são delicados e feitos para serem cuidados com muito carinho. Para conservar sua peça linda por mais tempo:</p>
+        <ul>
+          <li>Lave delicadamente, de preferência à mão.</li>
+          <li>Use sabão neutro e não deixe de molho.</li>
+          <li>Não esfregue sobre o bordado.</li>
+          <li>Não torça a peça.</li>
+          <li>Seque à sombra, em local arejado.</li>
+          <li>Passe pelo avesso, em temperatura baixa, evitando o bordado.</li>
+          <li>Guarde a peça limpa e seca.</li>
+        </ul>
+        <p class="amor">Cada pontinho foi feito à mão, com tempo, cuidado e muito amor.</p>
+      </div>
+    </div>
+    <div class="base">
+      <span>Cartão em 3x sem juros · Pix ou espécie com 5% de desconto</span>
+      <span>© <span id="ano">2026</span> Bibilica Boutique Infantil</span>
+      <span class="credito">Feito por Designer Alanne Dias · <a href="https://www.instagram.com/alannedias.designer/" target="_blank" rel="noopener">@alannedias.designer</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="fundo" id="fundo"></div>
+<aside class="sacola" id="sacola" aria-label="Carrinho de compras" aria-hidden="true">
+  <header>
+    <h2>Seu carrinho</h2>
+    <button class="fechar" id="fechar-sacola" type="button" aria-label="Fechar carrinho">✕</button>
+  </header>
+  <div class="corpo">
+    <div id="itens"></div>
+    <div id="resumo">
+      <div class="totais" id="totais"></div>
+      <form class="dados" id="dados" autocomplete="on">
+        <label for="f-nome">Seu nome<input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Ex.: Ana Paula"></label>
+        <fieldset class="opcoes" id="g-entrega">
+          <legend>Entrega <span class="obrig">obrigatório</span></legend>
+          <label class="opcao" for="e-moto"><input type="radio" id="e-moto" name="entrega" value="Moto táxi (Campina Grande - PB)"><span><b>Moto táxi</b><small>Somente em Campina Grande - PB · taxa de R$ 10,00</small></span></label>
+          <label class="opcao" for="e-correios"><input type="radio" id="e-correios" name="entrega" value="Correios"><span><b>Correios</b><small>Para todo o Brasil · frete informado no WhatsApp</small></span></label>
+        </fieldset>
+        <label for="f-endereco"><span>Endereço completo <span class="obrig">obrigatório</span></span><textarea id="f-endereco" name="endereco" autocomplete="street-address" placeholder="Rua, número, complemento, bairro, cidade, estado e CEP"></textarea></label>
+        <fieldset class="opcoes" id="g-pagamento">
+          <legend>Forma de pagamento <span class="obrig">pode marcar mais de uma</span></legend>
+          <label class="opcao" for="p-pix"><input type="checkbox" id="p-pix" name="pagamento" value="Pix"><span><b>Pix</b><small>5% de desconto</small></span></label>
+          <label class="opcao" for="p-cartao"><input type="checkbox" id="p-cartao" name="pagamento" value="Cartão de crédito"><span><b>Cartão de crédito</b><small>Em até 3x sem juros</small></span></label>
+          <label class="opcao" for="p-especie"><input type="checkbox" id="p-especie" name="pagamento" value="Espécie (dinheiro)"><span><b>Espécie (dinheiro)</b><small>5% de desconto</small></span></label>
+        </fieldset>
+        <label for="f-obs">Observação<textarea id="f-obs" name="obs" placeholder="Ex.: é para presente"></textarea></label>
+        <p class="faltando" id="faltando" role="alert" hidden></p>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <a class="btn-whats" id="enviar" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+      Enviar pedido pelo WhatsApp
+    </a>
+    <small>Correios: o valor do frete é informado na conversa.</small>
+  </footer>
+</aside>
+
+<script>
+/* ============ CONFIGURAÇÃO DA LOJA ============
+   WHATSAPP: número da loja com DDI 55 + DDD + número, só dígitos. Ex.: "5581999998888".
+   Enquanto estiver vazio, o WhatsApp abre e pede para escolher o contato. */
+const WHATSAPP = "5583988325972";
+const DESCONTO_PIX = 0.05;   // 5% no Pix ou espécie
+const PARCELAS = 3;
+const TAXA_MOTO = 10.00;     // taxa fixa do moto táxi em Campina Grande - PB          // cartão em até 3x sem juros
+
+/* Para adicionar uma peça nova, copie um bloco e troque os dados.
+   A foto vai na pasta assets/. */
+const PECAS = [
+  {
+    id: "BIB-001",
+    nome: "Vestido Laço",
+    descricao: "Vermelho-cereja, gola boneca com babadinho e dois lacinhos bordados à mão. Mangas de babados franzidos.",
+    preco: 209.90,
+    tamanhos: ["G", "1", "2", "3", "4/5", "6/7"],
+    foto: "assets/vestido-cerejinha.jpg"
+  },
+  {
+    id: "BIB-002",
+    nome: "Vestido Laço de Fita",
+    descricao: "Listrado areia e branco, golão com vivo vermelho, rosinhas bordadas à mão e laço de fita vermelho na frente. Mangas bufantes com punho.",
+    preco: 209.90,
+    tamanhos: ["G", "1", "2", "3", "4/5", "6/7"],
+    foto: "assets/vestido-laco-de-fita.jpg"
+  },
+  {
+    id: "BIB-003",
+    nome: "Conjunto Florzinha Azul",
+    descricao: "Bata azul-céu com mangas de babado, barrado em renda e raminho de florzinhas bordado à mão. Acompanha calcinha bufante com renda.",
+    preco: 159.90,
+    tamanhos: ["P", "M", "1 ano", "4 anos"],
+    foto: "assets/conjunto-florzinha-azul.jpg"
+  },
+  {
+    id: "BIB-004",
+    nome: "Conjunto Laranjinha",
+    descricao: "Xadrez laranja com gola de babado, botõezinhos na frente e uma laranjinha de crochê aplicada à mão. Acompanha shortinho.",
+    preco: 169.90,
+    tamanhos: ["3 anos", "4/5 anos"],
+    foto: "assets/conjunto-laranjinha.jpg"
+  },
+  {
+    id: "BIB-005",
+    nome: "Conjunto Piquenique",
+    descricao: "Xadrez vermelho com golão branco recortado e cerejinhas bordadas à mão. Acompanha calcinha bufante com punho branco.",
+    preco: 169.90,
+    tamanhos: ["2 anos"],
+    foto: "assets/conjunto-piquenique.jpg"
+  },
+  {
+    id: "BIB-006",
+    nome: "Vestido Raminho",
+    descricao: "Listrado vinho com golão branco de pompons, raminhos bordados à mão em vinho e dourado e dois laços de fita na cintura. Mangas bufantes.",
+    preco: 209.90,
+    tamanhos: ["G", "1", "2", "3", "4/5", "6/7"],
+    foto: "assets/vestido-raminho.jpg"
+  },
+  {
+    id: "BIB-007",
+    nome: "Vestido Jardinzinho",
+    descricao: "Floral miudinho em fundo claro, golão branco duplo com sianinha vermelha e laço branco nas costas.",
+    preco: 199.90,
+    tamanhos: ["2", "4", "6/7"],
+    foto: "assets/vestido-jardinzinho.jpg"
+  },
+  {
+    id: "BIB-008",
+    nome: "Vestido Guirlanda",
+    descricao: "Off-white com golão recortado em vinho, guirlanda de folhinhas bordada à mão em dourado e laço de fita vinho na frente.",
+    preco: 209.90,
+    tamanhos: ["G", "1", "2", "3", "4/5", "6/7"],
+    foto: "assets/vestido-guirlanda.jpg"
+  },
+  {
+    id: "BIB-009",
+    nome: "Vestido Abelhinha",
+    descricao: "Amarelo-manteiga com gola boneca rendada, entremeios de renda e abelhinhas e florzinhas bordadas à mão.",
+    preco: 209.90,
+    tamanhos: ["P", "M", "G", "1", "3", "4/5", "6/7"],
+    foto: "assets/vestido-abelhinha.jpg",
+    fotosExtras: ["assets/vestido-abelhinha-2.jpg"]
+  },
+  {
+    id: "BIB-010",
+    nome: "Vestido Campinho Rosa",
+    descricao: "Rosa com pala de babado rendado, flores do campo e abelhinhas bordadas à mão na pala e na saia.",
+    preco: 189.90,
+    tamanhos: ["3 anos", "4 anos"],
+    foto: "assets/vestido-campinho.jpg"
+  },
+  {
+    id: "BIB-011",
+    nome: "Conjunto Arco-Íris Azul",
+    descricao: "Listrado azul e branco, bata com babado na barra e shortinho, com arco-íris, sol, lua, cogumelos e florzinhas bordados à mão.",
+    preco: 159.90,
+    tamanhos: ["2 anos"],
+    foto: "assets/conjunto-arco-iris.jpg",
+    fotosExtras: ["assets/conjunto-arco-iris-2.jpg"]
+  },
+  {
+    id: "BIB-012",
+    nome: "Romper Cogumelinho",
+    descricao: "Xadrez verde com gola branca de babadinho e cogumelinhos bordados à mão. Mangas bufantes e botões na frente.",
+    preco: 129.90,
+    tamanhos: ["P (3 meses)"],
+    foto: "assets/romper-cogumelinho.jpg",
+    fotosExtras: ["assets/romper-cogumelinho-2.jpg"]
+  },
+  {
+    id: "BIB-013",
+    nome: "Romper Joaninha",
+    descricao: "Rosa-coral com babados nos ombros, vivo branco, florzinhas do campo e joaninhas bordadas à mão.",
+    preco: 129.90,
+    tamanhos: ["P (3 meses)"],
+    foto: "assets/romper-joaninha.jpg"
+  },
+  {
+    id: "BIB-014",
+    nome: "Conjunto Florzinha Rosa",
+    descricao: "Bata rosa com mangas de babado, barrado em renda e raminho de florzinhas bordado à mão. Acompanha calcinha bufante com renda.",
+    preco: 159.90,
+    tamanhos: ["P", "M", "1", "2", "3", "4 anos"],
+    foto: "assets/conjunto-florzinha-rosa.jpg",
+    fotosExtras: ["assets/conjunto-florzinha-rosa-2.jpg"]
+  },
+  {
+    id: "BIB-015",
+    nome: "Conjunto Lacinho Marinho",
+    descricao: "Xadrez azul-marinho com golão branco recortado e lacinhos bordados à mão. Mangas bufantes com punho e calcinha bufante com babadinho.",
+    preco: 169.90,
+    tamanhos: ["1 ano", "2 anos"],
+    foto: "assets/conjunto-lacinho-marinho.jpg"
+  },
+  {
+    id: "BIB-016",
+    nome: "Conjunto Sorvetinho",
+    descricao: "Xadrez azul com alcinhas de amarrar, sianinha vermelha e bolsinho com sorvete de crochê feito à mão. Acompanha shortinho.",
+    preco: 169.90,
+    tamanhos: ["1", "4/5 anos"],
+    foto: "assets/conjunto-sorvetinho.jpg"
+  },
+  {
+    id: "BIB-017",
+    nome: "Conjunto Casquinha",
+    descricao: "Listrado bege com pala xadrez rosa recortada, alcinhas de amarrar e casquinha de sorvete em crochê feita à mão. Shortinho com barra recortada.",
+    preco: 169.90,
+    tamanhos: ["G", "1 ano"],
+    foto: "assets/conjunto-casquinha.jpg"
+  },
+  {
+    id: "BIB-018",
+    nome: "Conjunto Moranguinho",
+    descricao: "Xadrez rosa com golão branco de babado e moranguinhos de crochê feitos à mão. Acompanha shortinho.",
+    preco: 169.90,
+    tamanhos: ["4/5 anos"],
+    foto: "assets/conjunto-moranguinho.jpg"
+  },
+  {
+    id: "BIB-019",
+    nome: "Conjunto Laranjeira",
+    descricao: "Bata listrada verde com pala xadrez laranja recortada, alcinhas de amarrar e laranjinha de crochê feita à mão. Shortinho xadrez com babado recortado.",
+    preco: 169.90,
+    tamanhos: ["1", "2", "3", "4/5 anos"],
+    foto: "assets/conjunto-laranjeira.jpg"
+  },
+  {
+    id: "BIB-020",
+    nome: "Conjunto Lavanda",
+    descricao: "Bata listrada lilás com pala amarela recortada, alcinhas de amarrar e florzinha de crochê feita à mão. Shortinho listrado amarelo com barra recortada.",
+    preco: 169.90,
+    tamanhos: ["G", "1", "2", "3", "4/5 anos"],
+    foto: "assets/conjunto-lavanda.jpg",
+    fotosExtras: ["assets/conjunto-lavanda-2.jpg"]
+  },
+  {
+    id: "BIB-021",
+    nome: "Romper Morangueiro",
+    descricao: "Listrado azul-claro com gola boneca, pala branca com entremeio de renda e raminho de moranguinhos e margaridas bordado à mão.",
+    preco: 149.90,
+    tamanhos: ["G (9 a 12 meses)"],
+    foto: "assets/romper-morangueiro.jpg",
+    fotosExtras: ["assets/romper-morangueiro-2.jpg"]
+  },
+  {
+    id: "BIB-022",
+    nome: "Romper Patinho",
+    descricao: "Amarelo-clarinho com babados e lacinhos em xadrez verde-sálvia e patinho bordado à mão no peito.",
+    preco: 149.90,
+    tamanhos: ["M (6 a 9 meses)"],
+    foto: "assets/romper-patinho.jpg",
+    fotosExtras: ["assets/romper-patinho-2.jpg"]
+  },
+  {
+    id: "BIB-023",
+    nome: "Vestido Algodão-Doce",
+    descricao: "Listrado rosa com golão branco de sianinha azul, florzinhas lilás bordadas à mão e laço de fita azul na frente.",
+    preco: 179.90,
+    tamanhos: ["M (6 a 9 meses)"],
+    foto: "assets/vestido-algodao-doce.jpg"
+  },
+  {
+    id: "BIB-024",
+    nome: "Vestido Nuvem",
+    descricao: "Azul-claro com gola boneca rendada, entremeios de renda, florzinhas bordadas à mão e babado na barra. Acompanha calcinha.",
+    preco: 209.90,
+    tamanhos: ["2 anos"],
+    foto: "assets/vestido-nuvem.jpg"
+  },
+  {
+    id: "BIB-025",
+    nome: "Vestido Botão de Rosa",
+    descricao: "Branco com babados rosa nos ombros, laços de fita rosa na cintura e flores do campo bordadas à mão.",
+    preco: 199.90,
+    tamanhos: ["4 anos"],
+    foto: "assets/vestido-botao-de-rosa.jpg",
+    fotosExtras: ["assets/vestido-botao-de-rosa-2.jpg"]
+  },
+  {
+    id: "BIB-026",
+    nome: "Vestido Cerejeira",
+    descricao: "Azul-marinho com pala de renda branca e cerejinhas e arabescos bordados à mão na pala e na saia.",
+    preco: 189.90,
+    tamanhos: ["M", "G", "1", "2", "3", "4/5 anos"],
+    foto: "assets/vestido-cerejeira.jpg"
+  },
+  {
+    id: "BIB-027",
+    nome: "Vestido Campinho Azul",
+    descricao: "Azul com pala de babado rendado, flores do campo e abelhinhas bordadas à mão na pala e na saia.",
+    preco: 189.90,
+    tamanhos: ["G", "1 ano", "4 anos"],
+    foto: "assets/vestido-campinho-azul.jpg"
+  },
+  {
+    id: "BIB-028",
+    nome: "Vestido Marujinha",
+    descricao: "Xadrez azul-marinho com gola marinheira branca, cerejinhas bordadas à mão, laço na frente e renda nas mangas e na barra.",
+    preco: 169.90,
+    tamanhos: ["3 anos"],
+    foto: "assets/vestido-marujinha.jpg",
+    fotosExtras: ["assets/vestido-marujinha-2.jpg"]
+  },
+  {
+    id: "BIB-029",
+    nome: "Conjunto Arco-Íris Rosa",
+    descricao: "Listrado rosa e branco, bata com babado na barra e shortinho, com arco-íris, lua, cogumelos e florzinhas bordados à mão.",
+    preco: 159.90,
+    tamanhos: ["2 anos"],
+    foto: "assets/conjunto-arco-iris-rosa.jpg"
+  },
+  {
+    id: "BIB-030",
+    nome: "Conjunto Margarida",
+    descricao: "Listrado amarelo com golão de babado, botõezinhos na frente e margarida de crochê feita à mão. Acompanha shortinho.",
+    preco: 169.90,
+    tamanhos: ["4/5 anos", "6/7 anos"],
+    foto: "assets/conjunto-margarida.jpg"
+  }
+];
+
+/* PLANILHA DE ESTOQUE (Google Planilhas)
+   Cole aqui o link CSV da aba "Estoque" (Arquivo > Compartilhar > Publicar na Web > CSV).
+   Com o link preenchido, o site lê a planilha a cada visita:
+   - Quantidade vazia = 1 peça.
+   - 0 = esgotado: o tamanho aparece riscado. Se todos os tamanhos zerarem, a peça sai do site.
+   - 1 ou 2 = mostra "últimas unidades".
+   Se a planilha não carregar, o site usa a lista ESTOQUE abaixo. */
+const PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/15rKAmNW9eVoZFP7FPq0yqrk7gFxDkbXJLgwvCbtaqow/gviz/tq?tqx=out:csv&sheet=Estoque";
+const ESCONDER_ESGOTADAS = true;
+const ESTOQUE_PADRAO = 1;   // tamanho sem quantidade informada = 1 peça (peça única)
+let ESTOQUE = {
+  "BIB-001": { "G": 0 },
+  "BIB-002": { "G": 0 },
+  "BIB-016": { "1": 2 },
+  "BIB-029": { "2 anos": 2 }
+};
+/* ============================================== */
+
+const brl = v => v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+const r2 = v => Math.round(v * 100) / 100;
+const pix = v => r2(v * (1 - DESCONTO_PIX));
+const CHAVE = "bibilica-sacola";
+let sacola = [];
+try { sacola = JSON.parse(localStorage.getItem(CHAVE) || "[]").filter(i => PECAS.some(p => p.id === i.id)); } catch (e) { sacola = []; }
+const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(sacola)); } catch (e) {} };
+const peca = id => PECAS.find(p => p.id === id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* Estoque */
+const norm = t => String(t).trim().toLowerCase().replace(/\s+/g, " ");
+const estoque = (id, tam) => {
+  const e = ESTOQUE[id]; if (!e) return ESTOQUE_PADRAO;
+  const k = Object.keys(e).find(x => norm(x) === norm(tam));
+  return k === undefined ? ESTOQUE_PADRAO : e[k];
+};
+const noCarrinho = (id, tam) => sacola.filter(i => i.id === id && i.tam === tam).reduce((s, i) => s + i.qtd, 0);
+const esgotada = p => p.tamanhos.every(t => estoque(p.id, t) <= 0);
+const ajustarSacola = () => { sacola = sacola.map(i => ({ ...i, qtd: Math.min(i.qtd, estoque(i.id, i.tam)) })).filter(i => i.qtd > 0); };
+ajustarSacola();
+
+/* Categorias e faixas de tamanho para os filtros */
+const tipo = p => p.categoria || p.nome.split(" ")[0];
+const faixa = t => {
+  const v = t.toLowerCase().trim();
+  if (/^[pmg]\b/.test(v)) return "bebe";
+  const n = parseInt(v, 10);
+  if (isNaN(n)) return "outros";
+  return n <= 3 ? "1a3" : "4a7";
+};
+
+/* Galeria de fotos (fotosExtras opcional em cada peça) */
+function galeria(p) {
+  const fotos = [p.foto, ...(p.fotosExtras || [])];
+  const imgs = fotos.map((f, i) => `<img src="${f}" alt="${esc(p.nome)}${fotos.length > 1 ? ` (foto ${i + 1} de ${fotos.length})` : ""}" loading="lazy">`).join("");
+  if (fotos.length === 1) return imgs;
+  return `<div class="galeria" tabindex="0" aria-label="Fotos de ${esc(p.nome)}">${imgs}</div>
+    <button type="button" class="seta ant" data-acao="foto" data-dir="-1" aria-label="Foto anterior">‹</button>
+    <button type="button" class="seta prox" data-acao="foto" data-dir="1" aria-label="Próxima foto">›</button>
+    <div class="pontos">${fotos.map((_, i) => `<span${i === 0 ? ' class="ativo"' : ""}></span>`).join("")}</div>`;
+}
+document.addEventListener("scroll", e => {
+  const g = e.target; if (!g.classList || !g.classList.contains("galeria")) return;
+  const i = Math.round(g.scrollLeft / g.clientWidth);
+  g.parentElement.querySelectorAll(".pontos span").forEach((s, k) => s.classList.toggle("ativo", k === i));
+}, true);
+
+/* Vitrine */
+const grade = document.getElementById("grade");
+function montarVitrine() {
+const ordem = [...PECAS].filter(p => !(ESCONDER_ESGOTADAS && esgotada(p))).sort((a, b) => esgotada(a) - esgotada(b));
+grade.innerHTML = ordem.map(p => { const fora = esgotada(p); return `
+  <article class="peca${fora ? " esgotada" : ""}" data-id="${p.id}" data-tipo="${esc(tipo(p))}" data-faixas="${[...new Set(p.tamanhos.filter(t => estoque(p.id, t) > 0).map(faixa))].join(" ")}">
+    <div class="foto">${galeria(p)}<span class="ref">Ref. ${p.id}</span>${fora ? `<span class="selo">Esgotado</span>` : ""}</div>
+    <div class="info">
+      <h3>${esc(p.nome)}</h3>
+      <p class="desc">${esc(p.descricao)}</p>
+      <div class="precos">
+        <span class="cartao-v">${brl(p.preco)}</span>
+        <span class="parc">ou ${PARCELAS}x de ${brl(r2(p.preco / PARCELAS))} sem juros no cartão</span>
+        <span class="pix"><b>${brl(pix(p.preco))}</b> no Pix ou espécie (5% off)</span>
+      </div>
+      <fieldset class="tamanhos">
+        <legend class="rotulo">Tamanho</legend>
+        ${(() => { const disp = p.tamanhos.filter(t => estoque(p.id, t) > 0); return p.tamanhos.map(t => { const e = estoque(p.id, t); return `<label title="${e <= 0 ? "Esgotado" : ""}"><input type="radio" name="tam-${p.id}" value="${t}"${e <= 0 ? " disabled" : ""}${disp.length === 1 && disp[0] === t ? " checked" : ""}><span>${t}</span></label>`; }).join(""); })()}
+      </fieldset>
+      <p class="estoque-msg"></p>
+      <div class="acoes">
+        <div class="contador" aria-label="Quantidade">
+          <button type="button" data-acao="menos" aria-label="Diminuir quantidade">−</button>
+          <output>1</output>
+          <button type="button" data-acao="mais" aria-label="Aumentar quantidade">+</button>
+        </div>
+        <button class="btn" type="button" data-acao="add"${fora ? " disabled" : ""}>${fora ? "Esgotado" : "Adicionar ao carrinho"}</button>
+      </div>
+      <p class="aviso" role="status"></p>
+    </div>
+  </article>`; }).join("") + `<p class="sem-resultado" id="sem-resultado" hidden>Nenhuma peça com esse filtro. Tente outro tamanho ou tipo.</p>`;
+grade.querySelectorAll(".peca").forEach(msgEstoque);
+filtrar();
+}
+
+/* Filtros */
+const filtro = { tipo: "todas", tam: "todos" };
+function filtrar() {
+  let n = 0;
+  grade.querySelectorAll(".peca").forEach(el => {
+    const ok = (filtro.tipo === "todas" || el.dataset.tipo === filtro.tipo) &&
+               (filtro.tam === "todos" || el.dataset.faixas.split(" ").includes(filtro.tam));
+    el.hidden = !ok; if (ok) n++;
+  });
+  document.getElementById("sem-resultado").hidden = n > 0;
+  document.getElementById("contagem").textContent = n === 1 ? "1 peça" : `${n} peças`;
+}
+[["filtro-tipo", "tipo"], ["filtro-tam", "tam"]].forEach(([id, k]) => {
+  document.getElementById(id).addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    filtro[k] = b.dataset.v;
+    b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    filtrar();
+  });
+});
+
+function msgEstoque(card) {
+  const sel = card.querySelector("input[type=radio]:checked"); const m = card.querySelector(".estoque-msg");
+  if (!sel) { m.textContent = ""; return; }
+  const e = estoque(card.dataset.id, sel.value);
+  m.textContent = e === 1 ? "Peça única neste tamanho" : e <= 3 ? `Últimas ${e} unidades neste tamanho` : "";
+}
+montarVitrine();
+
+/* Lê a planilha publicada (CSV) e atualiza a vitrine */
+function lerCSV(txt) {
+  const linhas = []; let campo = "", linha = [], aspas = false;
+  for (let i = 0; i < txt.length; i++) {
+    const c = txt[i];
+    if (aspas) { if (c === '"' && txt[i + 1] === '"') { campo += '"'; i++; } else if (c === '"') aspas = false; else campo += c; }
+    else if (c === '"') aspas = true;
+    else if (c === ",") { linha.push(campo); campo = ""; }
+    else if (c === "\n" || c === "\r") { if (c === "\r" && txt[i + 1] === "\n") i++; linha.push(campo); linhas.push(linha); linha = []; campo = ""; }
+    else campo += c;
+  }
+  if (campo || linha.length) { linha.push(campo); linhas.push(linha); }
+  return linhas;
+}
+/* Diagnóstico: abra o site com #estoque no fim do endereço para ver se a planilha foi lida */
+function diagnostico(txt, ok) {
+  if (location.hash !== "#estoque") return;
+  let d = document.getElementById("diag");
+  if (!d) { d = document.createElement("div"); d.id = "diag"; document.body.appendChild(d); }
+  d.textContent = txt;
+  d.style.cssText = `position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;padding:12px 14px;border-radius:10px;font:14px/1.4 system-ui,sans-serif;color:#fff;background:${ok ? "#5f6b47" : "#A2453A"};box-shadow:0 6px 20px rgba(0,0,0,.25)`;
+}
+async function carregarPlanilha() {
+  if (!PLANILHA_CSV) { diagnostico("Nenhuma planilha ligada ao site.", false); return; }
+  try {
+    const r = await fetch(PLANILHA_CSV + (PLANILHA_CSV.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("erro " + r.status);
+    const [cab, ...dados] = lerCSV(await r.text());
+    const col = nome => cab.findIndex(h => norm(h).startsWith(nome));
+    const cRef = col("ref"), cTam = col("tamanho"), cQtd = col("quantidade");
+    if (cRef < 0 || cTam < 0 || cQtd < 0) throw new Error("não achei as colunas Ref., Tamanho e Quantidade — talvez a planilha não esteja pública");
+    const novo = {};
+    dados.forEach(l => {
+      const ref = (l[cRef] || "").trim().toUpperCase(), tam = (l[cTam] || "").trim(), q = (l[cQtd] || "").trim();
+      if (!ref || !tam || q === "") return;
+      const n = parseInt(q, 10); if (isNaN(n)) return;
+      (novo[ref] = novo[ref] || {})[tam] = Math.max(n, 0);
+    });
+    const zerados = Object.entries(novo).flatMap(([ref, t]) => Object.entries(t).filter(([, q]) => q <= 0).map(([tam]) => `${ref} ${tam}`));
+    ESTOQUE = novo; ajustarSacola(); salvar(); montarVitrine(); render();
+    diagnostico(`✓ Planilha lida às ${new Date().toLocaleTimeString("pt-BR")} · ${dados.length} linhas · zerados: ${zerados.join(", ") || "nenhum"}`, true);
+  } catch (e) {
+    console.warn("Planilha de estoque indisponível; usando a lista do site.", e);
+    diagnostico(`✗ Não consegui ler a planilha (${e.message || e}). Usando a lista do site. Confira se o compartilhamento está como "Qualquer pessoa com o link".`, false);
+  }
+}
+carregarPlanilha();
+
+grade.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.acao === "foto") {
+    const g = b.parentElement.querySelector(".galeria"); const n = g.children.length;
+    const i = (Math.round(g.scrollLeft / g.clientWidth) + +b.dataset.dir + n) % n;
+    g.scrollTo({ left: i * g.clientWidth, behavior: "smooth" }); return;
+  }
+  const card = b.closest(".peca"); const out = card.querySelector("output"); const aviso = card.querySelector(".aviso");
+  let q = +out.textContent;
+  const selT = card.querySelector("input[type=radio]:checked");
+  const limite = selT ? Math.max(estoque(card.dataset.id, selT.value) - noCarrinho(card.dataset.id, selT.value), 1) : 20;
+  if (b.dataset.acao === "mais") {
+    if (selT && q >= limite) { aviso.textContent = limite === 1 ? "Temos só 1 peça neste tamanho." : `Temos só ${limite} peças neste tamanho.`; aviso.classList.add("erro"); return; }
+    out.textContent = Math.min(q + 1, 20);
+  }
+  if (b.dataset.acao === "menos") out.textContent = Math.max(q - 1, 1);
+  if (b.dataset.acao === "add") {
+    const sel = card.querySelector("input[type=radio]:checked");
+    if (!sel) { aviso.textContent = "Escolha um tamanho para adicionar."; aviso.classList.add("erro"); return; }
+    const id = card.dataset.id; const tam = sel.value;
+    const resta = estoque(id, tam) - noCarrinho(id, tam);
+    if (resta <= 0) { aviso.textContent = "Você já colocou no carrinho todas as unidades deste tamanho."; aviso.classList.add("erro"); return; }
+    if (q > resta) q = resta;
+    const ex = sacola.find(i => i.id === id && i.tam === tam);
+    if (ex) ex.qtd += q; else sacola.push({ id, tam, qtd: q });
+    salvar(); render();
+    aviso.classList.remove("erro");
+    aviso.textContent = `Adicionado: ${q}x tamanho ${tam}.`;
+    out.textContent = 1;
+    const bs = document.getElementById("abrir-sacola"); bs.classList.remove("pulse"); void bs.offsetWidth; bs.classList.add("pulse");
+  }
+});
+grade.addEventListener("change", e => {
+  if (e.target.matches("input[type=radio]")) { const card = e.target.closest(".peca"); const a = card.querySelector(".aviso"); a.textContent = ""; a.classList.remove("erro"); card.querySelector("output").textContent = 1; msgEstoque(card); }
+});
+
+/* Sacola */
+const elItens = document.getElementById("itens"), elTotais = document.getElementById("totais"), elResumo = document.getElementById("resumo");
+const enviar = document.getElementById("enviar");
+const totalCartao = () => r2(sacola.reduce((s, i) => s + peca(i.id).preco * i.qtd, 0));
+const ehMoto = () => { const r = document.querySelector('input[name="entrega"]:checked'); return !!r && r.id === "e-moto"; };
+const ehCorreios = () => { const r = document.querySelector('input[name="entrega"]:checked'); return !!r && r.id === "e-correios"; };
+const taxa = () => ehMoto() ? TAXA_MOTO : 0;
+const totais = () => { const p = totalCartao(), f = taxa(); return { produtos: p, cartao: r2(p + f), pix: r2(pix(p) + f), taxa: f }; };
+
+function render() {
+  const n = sacola.reduce((s, i) => s + i.qtd, 0);
+  document.getElementById("qtd-sacola").textContent = n;
+  if (!sacola.length) {
+    elItens.innerHTML = `<div class="vazia"><img src="assets/laco.png" alt=""><p>Seu carrinho está vazio.<br>Escolha uma peça para começar.</p></div>`;
+    elResumo.hidden = true; enviar.setAttribute("aria-disabled", "true"); enviar.href = "#"; return;
+  }
+  elResumo.hidden = false; enviar.removeAttribute("aria-disabled");
+  elItens.innerHTML = sacola.map((i, k) => { const p = peca(i.id); return `
+    <div class="item">
+      <img src="${p.foto}" alt="">
+      <div>
+        <div class="nome">${esc(p.nome)}</div>
+        <div class="det">Ref. ${p.id} · Tamanho ${i.tam}</div>
+        <div class="contador">
+          <button type="button" data-k="${k}" data-d="-1" aria-label="Diminuir">−</button>
+          <output>${i.qtd}</output>
+          <button type="button" data-k="${k}" data-d="1" aria-label="Aumentar"${i.qtd >= estoque(i.id, i.tam) ? " disabled title=\"Quantidade máxima disponível\"" : ""}>+</button>
+        </div>
+      </div>
+      <div class="preco">${brl(r2(p.preco * i.qtd))}<br><button class="remover" type="button" data-rm="${k}">remover</button></div>
+    </div>`; }).join("");
+  const t = totalCartao();
+  renderTotais();
+  atualizarLink();
+}
+
+function renderTotais() {
+  if (!sacola.length) return;
+  const T = totais();
+  const linhaEntrega = ehMoto() ? `<div class="menor"><span>Moto táxi (Campina Grande)</span><span>+ ${brl(T.taxa)}</span></div>`
+    : ehCorreios() ? `<div class="frete"><span>Frete Correios: informado pelo WhatsApp</span></div>`
+    : `<div class="frete"><span>Escolha a entrega abaixo</span></div>`;
+  elTotais.innerHTML = `
+    <div class="menor"><span>Produtos</span><span>${brl(T.produtos)}</span></div>
+    ${linhaEntrega}
+    <div class="grande"><span>Total no cartão</span><span>${brl(T.cartao)}</span></div>
+    <div class="menor"><span>em até ${PARCELAS}x sem juros</span><span>${PARCELAS}x de ${brl(r2(T.cartao / PARCELAS))}</span></div>
+    <div class="grande"><span>Total no Pix ou espécie</span><span>${brl(T.pix)}</span></div>
+    <div class="menor"><span>5% de desconto nos produtos</span><span></span></div>`;
+}
+const val = id => document.getElementById(id).value.trim();
+const entregaSel = () => (document.querySelector('input[name="entrega"]:checked') || {}).value || "";
+const pagamentosSel = () => [...document.querySelectorAll('input[name="pagamento"]:checked')].map(x => x.value);
+function mensagem() {
+  const nome = val("f-nome"), endereco = val("f-endereco"), obs = val("f-obs");
+  const entrega = entregaSel(), pags = pagamentosSel();
+  const T = totais();
+  const linhas = ["Olá! Vim pelo catálogo da Bibilica e gostaria de fazer este pedido:", ""];
+  sacola.forEach(i => { const p = peca(i.id);
+    linhas.push(`• *${p.nome}* (Ref. ${p.id})`, `Tamanho: ${i.tam} · Quantidade: ${i.qtd}`, `${brl(r2(p.preco * i.qtd))}`, "");
+  });
+  const temCartao = !pags.length || pags.includes("Cartão de crédito");
+  const temDesconto = !pags.length || pags.some(x => x !== "Cartão de crédito");
+  if (T.taxa) linhas.push(`Produtos: ${brl(T.produtos)}`, `Moto táxi: ${brl(T.taxa)}`, "");
+  const comFrete = T.taxa ? " com entrega" : "";
+  if (temCartao) linhas.push(`*Total no cartão${comFrete}:* ${brl(T.cartao)} (até ${PARCELAS}x de ${brl(r2(T.cartao / PARCELAS))} sem juros)`);
+  if (temDesconto) linhas.push(`*Total no Pix ou espécie${comFrete}:* ${brl(T.pix)} (5% de desconto nos produtos)`);
+  linhas.push("");
+  if (nome) linhas.push(`*Nome:* ${nome}`);
+  if (entrega) linhas.push(`*Entrega:* ${entrega}`);
+  if (endereco) linhas.push(`*Endereço:* ${endereco.replace(/\s*\n\s*/g, ", ")}`);
+  if (pags.length) linhas.push(`*Pagamento:* ${pags.join(" ou ")}`);
+  if (obs) linhas.push(`*Observação:* ${obs}`);
+  linhas.push("", T.taxa ? "Aguardo a confirmação para finalizar. Obrigada!" : "Aguardo o valor do frete para finalizar. Obrigada!");
+  return linhas.join("\n");
+}
+function atualizarLink() {
+  if (!sacola.length) return;
+  enviar.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem())}`;
+}
+
+elItens.addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.rm !== undefined) sacola.splice(+b.dataset.rm, 1);
+  if (b.dataset.d) { const i = sacola[+b.dataset.k]; i.qtd = Math.min(i.qtd + +b.dataset.d, estoque(i.id, i.tam)); if (i.qtd < 1) sacola.splice(+b.dataset.k, 1); }
+  salvar(); render();
+});
+document.getElementById("dados").addEventListener("input", atualizarLink);
+document.getElementById("dados").addEventListener("change", () => { renderTotais(); atualizarLink(); if (!document.getElementById("faltando").hidden) validar(); });
+function validar() {
+  const falta = [];
+  const ge = document.getElementById("g-entrega"), gp = document.getElementById("g-pagamento"), en = document.getElementById("f-endereco");
+  ge.classList.toggle("invalido", !entregaSel()); if (!entregaSel()) falta.push("a forma de entrega");
+  en.classList.toggle("invalido", !val("f-endereco")); if (!val("f-endereco")) falta.push("o endereço completo");
+  gp.classList.toggle("invalido", !pagamentosSel().length); if (!pagamentosSel().length) falta.push("a forma de pagamento");
+  const f = document.getElementById("faltando");
+  f.hidden = !falta.length;
+  f.textContent = falta.length ? "Para enviar, escolha " + falta.join(", ").replace(/, ([^,]*)$/, " e $1") + "." : "";
+  return !falta.length;
+}
+enviar.addEventListener("click", e => {
+  if (!sacola.length) { e.preventDefault(); return; }
+  if (!validar()) { e.preventDefault(); const f = document.getElementById("faltando"); f.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+  atualizarLink();
+});
+document.getElementById("f-endereco").addEventListener("input", () => { if (!document.getElementById("faltando").hidden) validar(); });
+document.getElementById("dados").addEventListener("submit", e => e.preventDefault());
+
+const elSacola = document.getElementById("sacola"), fundo = document.getElementById("fundo");
+function abrir() { elSacola.classList.add("aberta"); fundo.classList.add("aberto"); elSacola.setAttribute("aria-hidden", "false"); document.getElementById("fechar-sacola").focus(); }
+function fechar() { elSacola.classList.remove("aberta"); fundo.classList.remove("aberto"); elSacola.setAttribute("aria-hidden", "true"); }
+document.getElementById("abrir-sacola").addEventListener("click", abrir);
+document.getElementById("fechar-sacola").addEventListener("click", fechar);
+fundo.addEventListener("click", fechar);
+document.addEventListener("keydown", e => { if (e.key === "Escape") fechar(); });
+document.getElementById("ano").textContent = new Date().getFullYear();
+render();
+</script>
+
+</body>
+</html>
