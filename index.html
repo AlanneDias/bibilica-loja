@@ -308,12 +308,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <button type="button" data-v="Conjunto" aria-pressed="false">Conjuntos</button>
           <button type="button" data-v="Romper" aria-pressed="false">Rompers</button>
         </fieldset>
-        <fieldset class="filtro" id="filtro-tam"><legend>Tamanho</legend>
-          <button type="button" data-v="todos" aria-pressed="true">Todos</button>
-          <button type="button" data-v="bebe" aria-pressed="false">Bebê<span class="extra"> (P, M, G)</span></button>
-          <button type="button" data-v="1a3" aria-pressed="false">1 a 3 anos</button>
-          <button type="button" data-v="4a7" aria-pressed="false">4 a 7 anos</button>
-        </fieldset>
         <p class="contagem" id="contagem" role="status"></p>
       </div>
       <div class="grade" id="grade"></div>
@@ -775,7 +769,7 @@ function filtrar() {
   document.getElementById("sem-resultado").hidden = n > 0;
   document.getElementById("contagem").textContent = n === 1 ? "1 peça" : `${n} peças`;
 }
-[["filtro-tipo", "tipo"], ["filtro-tam", "tam"]].forEach(([id, k]) => {
+[["filtro-tipo", "tipo"]].forEach(([id, k]) => {
   document.getElementById(id).addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     filtro[k] = b.dataset.v;
