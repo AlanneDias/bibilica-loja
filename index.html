@@ -145,6 +145,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .filtro button { background: var(--papel); border: 1px solid var(--rosa); color: var(--marrom); border-radius: 999px; padding: 8px 16px; cursor: pointer; font-size: .85rem; }
 .filtro button:hover { border-color: var(--marrom); }
 .filtro button[aria-pressed="true"] { background: var(--marrom); border-color: var(--marrom); color: var(--marfim); }
+@media (max-width: 820px) {
+  .filtros { gap: 18px; justify-items: stretch; margin-top: 24px; }
+  .filtro { flex-wrap: nowrap; justify-content: safe center; overflow-x: auto; scrollbar-width: none; gap: 6px; padding-bottom: 2px; }
+  .filtro::-webkit-scrollbar { display: none; }
+  .filtro legend { float: none; display: block; width: 100%; text-align: center; margin: 0 0 8px; }
+  .filtro button { flex: none; padding: 7px 13px; font-size: .82rem; }
+  .filtro .extra { display: none; }
+  .contagem { text-align: center; }
+}
 .contagem { font-size: .85rem; color: var(--taupe); margin: 0; }
 .sem-resultado { grid-column: 1 / -1; text-align: center; color: var(--taupe); padding: 32px 0; }
 .peca[hidden] { display: none; }
@@ -301,7 +310,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         </fieldset>
         <fieldset class="filtro" id="filtro-tam"><legend>Tamanho</legend>
           <button type="button" data-v="todos" aria-pressed="true">Todos</button>
-          <button type="button" data-v="bebe" aria-pressed="false">Bebê (P, M, G)</button>
+          <button type="button" data-v="bebe" aria-pressed="false">Bebê<span class="extra"> (P, M, G)</span></button>
           <button type="button" data-v="1a3" aria-pressed="false">1 a 3 anos</button>
           <button type="button" data-v="4a7" aria-pressed="false">4 a 7 anos</button>
         </fieldset>
