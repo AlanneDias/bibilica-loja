@@ -364,3 +364,24 @@ body {overflow-x:clip;}
 .abertura:not(.manifesto) .wrap {padding-top:42px;padding-bottom:20px;}
 .haste-frente {display:none;}
 .abertura:not(.manifesto) .titulo-logo {margin-top:18px;}
+.abertura:not(.manifesto) {position:relative;isolation:isolate;overflow:hidden;background:#fff7f2;background-image:none;}
+.abertura:not(.manifesto)::before,.abertura:not(.manifesto)::after {content:'';position:absolute;top:0;bottom:0;width:clamp(85px,23vw,250px);background:url('assets/florais-laterais.png') left center / contain no-repeat;opacity:.9;pointer-events:none;z-index:0;}
+.abertura:not(.manifesto)::before {left:0;}
+.abertura:not(.manifesto)::after {right:0;transform:scaleX(-1);}
+.abertura:not(.manifesto) .titulo-logo {position:relative;z-index:1;}
+@media(max-width:550px){.abertura:not(.manifesto)::before,.abertura:not(.manifesto)::after {width:90px;opacity:.75;}}
+.topo .renda-continua {top:calc(100% - 12px);z-index:25;}
+
+/* Cabeçalho amplo, sem laço e renda sobreposta ao verde. */
+.topo .wrap {width:100%;max-width:none;padding-inline:24px;min-height:66px;justify-content:flex-end;}
+.topo nav {width:100%;justify-content:flex-end;}
+.topo .renda-continua {top:calc(100% - 21px);}
+.topo .btn-sacola {height:40px;min-height:40px;padding:4px 13px;}
+.topo .btn-sacola svg {height:27px;width:27px;}
+
+.topo .wrap {min-height:90px;padding-block:16px;}
+
+.cenario-boutique:not(.modo-outras) #grade .tem-recorte .galeria img[src="assets/laterais/vestido-moranguinho-azul.png"] {transform:translateX(-50%) scaleX(-.85);}
+.dados label[hidden] {display:none;}
+.cenario-boutique .sacola-bibilica::before {left:6%;right:-16%;bottom:-3%;height:10%;background:radial-gradient(ellipse at 45% 50%,rgba(65,39,19,.36),rgba(65,39,19,.12) 44%,transparent 74%);filter:blur(3px);transform:skewX(-28deg);}
+.cenario-boutique .sacola-bibilica::after {content:'';position:absolute;z-index:-1;left:29%;bottom:-1%;width:70%;height:7%;border-radius:50%;background:rgba(68,42,20,.15);filter:blur(4px);transform:translateX(12%) skewX(-28deg);pointer-events:none;}

@@ -246,7 +246,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 <header class="topo">
   <div class="wrap">
-    <a class="marca" href="#inicio" aria-label="Bibilica Boutique Infantil, início"><img src="assets/laco.png" alt="Bibilica Boutique Infantil" width="800" height="841"></a>
+    
     <nav>
       <a class="link" href="#pecas">Peças</a>
       <a class="link" href="#cuidados">Cuidados</a>
@@ -361,6 +361,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <fieldset class="opcoes" id="g-entrega">
           <legend>Entrega <span class="obrig">obrigatório</span></legend>
           <label class="opcao" for="e-moto"><input type="radio" id="e-moto" name="entrega" value="Moto táxi (Campina Grande - PB)"><span><b>Moto táxi</b><small>Somente em Campina Grande - PB · taxa de R$ 10,00</small></span></label>
+          <label class="opcao" for="e-retirada"><input type="radio" id="e-retirada" name="entrega" value="Retirada"><span><b>Retirada</b><small>Sem frete · endereço de retirada informado no ato do pagamento</small></span></label>
           <label class="opcao" for="e-correios"><input type="radio" id="e-correios" name="entrega" value="Correios"><span><b>Correios</b><small>Para todo o Brasil · frete informado no WhatsApp</small></span></label>
         </fieldset>
         <label for="f-endereco"><span>Endereço completo <span class="obrig">obrigatório</span></span><textarea id="f-endereco" name="endereco" autocomplete="street-address" placeholder="Rua, número, complemento, bairro, cidade, estado e CEP"></textarea></label>
@@ -426,7 +427,7 @@ const PECAS = [
     descricao: "Xadrez laranja com gola de babado, botõezinhos na frente e uma laranjinha de crochê aplicada à mão. Acompanha shortinho.",
     preco: 169.90,
     tamanhos: ["3 anos", "4/5 anos"],
-    foto: "assets/conjunto-laranjinha.jpg"
+    foto: "assets/sem-lacos/conjunto-laranjinha.png"
   },
   {
     id: "BIB-005",
@@ -466,7 +467,7 @@ const PECAS = [
     descricao: "Amarelo-manteiga com gola boneca rendada, entremeios de renda e abelhinhas e florzinhas bordadas à mão.",
     preco: 209.90,
     tamanhos: ["P", "M", "G", "1", "3", "4/5", "6/7"],
-    foto: "assets/vestido-abelhinha.jpg",
+    foto: "assets/sem-lacos/vestido-abelhinha.png",
     fotosExtras: ["assets/vestido-abelhinha-2.jpg"]
   },
   {
@@ -492,8 +493,8 @@ const PECAS = [
     descricao: "Xadrez verde com gola branca de babadinho e cogumelinhos bordados à mão. Mangas bufantes e botões na frente.",
     preco: 129.90,
     tamanhos: ["P (3 meses)"],
-    foto: "assets/romper-cogumelinho.jpg",
-    fotosExtras: ["assets/romper-cogumelinho-2.jpg"]
+    foto: "assets/sem-lacos/romper-cogumelinho.png",
+    fotosExtras: ["assets/sem-lacos/romper-cogumelinho-2.png"]
   },
   {
     id: "BIB-013",
@@ -576,7 +577,7 @@ const PECAS = [
     descricao: "Amarelo-clarinho com babados e lacinhos em xadrez verde-sálvia e patinho bordado à mão no peito.",
     preco: 149.90,
     tamanhos: ["M (6 a 9 meses)"],
-    foto: "assets/romper-patinho.jpg",
+    foto: "assets/sem-lacos/romper-patinho.png",
     fotosExtras: ["assets/romper-patinho-2.jpg"]
   },
   {
@@ -585,7 +586,7 @@ const PECAS = [
     descricao: "Listrado rosa com golão branco de sianinha azul, florzinhas lilás bordadas à mão e laço de fita azul na frente.",
     preco: 179.90,
     tamanhos: ["M (6 a 9 meses)"],
-    foto: "assets/vestido-algodao-doce.jpg"
+    foto: "assets/sem-lacos/vestido-algodao-doce.png"
   },
   {
     id: "BIB-024",
@@ -610,7 +611,7 @@ const PECAS = [
     descricao: "Azul-marinho com pala de renda branca e cerejinhas e arabescos bordados à mão na pala e na saia.",
     preco: 189.90,
     tamanhos: ["M", "G", "1", "2", "3", "4/5 anos"],
-    foto: "assets/vestido-cerejeira.jpg"
+    foto: "assets/sem-lacos/vestido-cerejeira.png"
   },
   {
     id: "BIB-027",
@@ -626,8 +627,8 @@ const PECAS = [
     descricao: "Xadrez azul-marinho com gola marinheira branca, cerejinhas bordadas à mão, laço na frente e renda nas mangas e na barra.",
     preco: 169.90,
     tamanhos: ["3 anos"],
-    foto: "assets/vestido-marujinha.jpg",
-    fotosExtras: ["assets/vestido-marujinha-2.jpg"]
+    foto: "assets/sem-lacos/vestido-marujinha.png",
+    fotosExtras: ["assets/sem-lacos/vestido-marujinha-2.png"]
   },
   {
     id: "BIB-029",
@@ -643,7 +644,16 @@ const PECAS = [
     descricao: "Listrado amarelo com golão de babado, botõezinhos na frente e margarida de crochê feita à mão. Acompanha shortinho.",
     preco: 169.90,
     tamanhos: ["4/5 anos", "6/7 anos"],
-    foto: "assets/conjunto-margarida.jpg"
+    foto: "assets/sem-lacos/conjunto-margarida.png"
+  },
+  {
+    id: "BIB-031",
+    nome: "Vestido Moranguinho Azul",
+    descricao: "Listrado azul-claro e branco, com gola boneca, mangas bufantes e pala bordada com moranguinhos e margaridas. Delicada renda abaixo do bordado.",
+    preco: 179.90,
+    tamanhos: ["P", "M", "G", "4 anos"],
+    foto: "assets/recortes/vestido-moranguinho-azul.png",
+    fotosExtras: ["assets/vestido-moranguinho-azul-modelo.jpg"]
   }
 ];
 
@@ -866,6 +876,7 @@ const elItens = document.getElementById("itens"), elTotais = document.getElement
 const enviar = document.getElementById("enviar");
 const totalCartao = () => r2(sacola.reduce((s, i) => s + peca(i.id).preco * i.qtd, 0));
 const ehMoto = () => { const r = document.querySelector('input[name="entrega"]:checked'); return !!r && r.id === "e-moto"; };
+const ehRetirada = () => document.getElementById("e-retirada").checked;
 const ehCorreios = () => { const r = document.querySelector('input[name="entrega"]:checked'); return !!r && r.id === "e-correios"; };
 const taxa = () => ehMoto() ? TAXA_MOTO : 0;
 const totais = () => { const p = totalCartao(), f = taxa(); return { produtos: p, cartao: r2(p + f), pix: r2(pix(p) + f), taxa: f }; };
@@ -901,6 +912,7 @@ function renderTotais() {
   if (!sacola.length) return;
   const T = totais();
   const linhaEntrega = ehMoto() ? `<div class="menor"><span>Moto táxi (Campina Grande)</span><span>+ ${brl(T.taxa)}</span></div>`
+    : ehRetirada() ? `<div class="frete"><span>Retirada · sem frete. Endereço informado no ato do pagamento.</span></div>`
     : ehCorreios() ? `<div class="frete"><span>Frete Correios: informado pelo WhatsApp</span></div>`
     : `<div class="frete"><span>Escolha a entrega abaixo</span></div>`;
   elTotais.innerHTML = `
@@ -931,10 +943,11 @@ function mensagem() {
   linhas.push("");
   if (nome) linhas.push(`*Nome:* ${nome}`);
   if (entrega) linhas.push(`*Entrega:* ${entrega}`);
-  if (endereco) linhas.push(`*Endereço:* ${endereco.replace(/\s*\n\s*/g, ", ")}`);
+  if (ehRetirada()) linhas.push("*Retirada:* endereço informado no ato do pagamento.");
+  if (endereco && !ehRetirada()) linhas.push(`*Endereço:* ${endereco.replace(/\s*\n\s*/g, ", ")}`);
   if (pags.length) linhas.push(`*Pagamento:* ${pags.join(" ou ")}`);
   if (obs) linhas.push(`*Observação:* ${obs}`);
-  linhas.push("", T.taxa ? "Aguardo a confirmação para finalizar. Obrigada!" : "Aguardo o valor do frete para finalizar. Obrigada!");
+  linhas.push("", (T.taxa || ehRetirada()) ? "Aguardo a confirmação para finalizar. Obrigada!" : "Aguardo o valor do frete para finalizar. Obrigada!");
   return linhas.join("\n");
 }
 function atualizarLink() {
@@ -949,12 +962,12 @@ elItens.addEventListener("click", e => {
   salvar(); render();
 });
 document.getElementById("dados").addEventListener("input", atualizarLink);
-document.getElementById("dados").addEventListener("change", () => { renderTotais(); atualizarLink(); if (!document.getElementById("faltando").hidden) validar(); });
+document.getElementById("dados").addEventListener("change", () => { const en=document.getElementById("f-endereco"); en.closest("label").hidden=ehRetirada(); en.disabled=ehRetirada(); renderTotais(); atualizarLink(); if (!document.getElementById("faltando").hidden) validar(); });
 function validar() {
   const falta = [];
   const ge = document.getElementById("g-entrega"), gp = document.getElementById("g-pagamento"), en = document.getElementById("f-endereco");
   ge.classList.toggle("invalido", !entregaSel()); if (!entregaSel()) falta.push("a forma de entrega");
-  en.classList.toggle("invalido", !val("f-endereco")); if (!val("f-endereco")) falta.push("o endereço completo");
+  en.classList.toggle("invalido", !ehRetirada() && !val("f-endereco")); if (!ehRetirada() && !val("f-endereco")) falta.push("o endereço completo");
   gp.classList.toggle("invalido", !pagamentosSel().length); if (!pagamentosSel().length) falta.push("a forma de pagamento");
   const f = document.getElementById("faltando");
   f.hidden = !falta.length;

@@ -20,7 +20,8 @@
     const factor=card.classList.contains('em-destaque')?1.1:1;
     const scene=card.closest('.cenario-boutique'),rack=card.closest('.arara-estrutura');
     if(!scene||!rack)return;
-    const hookShift=(metrics.woodX-img.naturalWidth/2)*scale*(factor===1?.85:factor);
+    const mirrored=img.getAttribute("src")==="assets/laterais/vestido-moranguinho-azul.png";
+    const hookShift=(metrics.woodX-img.naturalWidth/2)*scale*(factor===1?.85:factor)*(mirrored?-1:1);
     const hookX=rack.offsetLeft+grid.offsetLeft+card.offsetLeft+photo.clientWidth/2+hookShift;
     const railY=(253.4-.04364*(hookX/scene.clientWidth*1672))/941*scene.clientHeight;
     const railLocal=railY-rack.offsetTop-grid.offsetTop;
@@ -64,7 +65,7 @@
   window.addEventListener('scroll',hidePreview,true);window.addEventListener('resize',hidePreview);
   window.addEventListener('resize',()=>grid.querySelectorAll('.tem-recorte').forEach(fitHanger));
   grid.addEventListener('transitionend',e=>{if(e.propertyName==='flex-grow')grid.querySelectorAll('.tem-recorte').forEach(fitHanger);});
-  const cutoutNames = new Set(['vestido-cerejinha','vestido-abelhinha','vestido-algodao-doce','vestido-botao-de-rosa','vestido-campinho-azul','vestido-campinho','vestido-cerejeira','vestido-guirlanda','vestido-jardinzinho','vestido-laco-de-fita','vestido-marujinha','vestido-nuvem','vestido-raminho']);
+  const cutoutNames = new Set(['vestido-moranguinho-azul','vestido-cerejinha','vestido-abelhinha','vestido-algodao-doce','vestido-botao-de-rosa','vestido-campinho-azul','vestido-campinho','vestido-cerejeira','vestido-guirlanda','vestido-jardinzinho','vestido-laco-de-fita','vestido-marujinha','vestido-nuvem','vestido-raminho']);
   function paintDetail() {
     if (!activeCard) return;
     const original = activeCard.querySelector('.info');
@@ -104,7 +105,7 @@
     grid.querySelectorAll('.peca').forEach(card=>{
       if(card.querySelector('.etiqueta-arara')) return;
       const first=card.querySelector('.foto img');
-      const name=first.getAttribute('src').split('/').pop().replace(/\.jpg$/,'');
+      const name=first.getAttribute('src').split('/').pop().replace(/\.(?:jpg|jpeg|png)$/,'');
       if(cutoutNames.has(name)) {
         first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png';first.dataset.lateral='assets/laterais/'+name+'.png';first.src=first.dataset.lateral;
         card.classList.add('tem-recorte');
