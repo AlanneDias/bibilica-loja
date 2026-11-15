@@ -165,6 +165,16 @@
   if(rackControls)scene.after(note,rackControls,catalog);else scene.after(note,catalog);
   note.hidden=true;
   if(rackControls)rackControls.hidden=true;
+  const panorama=document.createElement('div');panorama.className='vitrine-panoramica';
+  panorama.setAttribute('role','region');panorama.setAttribute('aria-label','Cabideiro interativo. Deslize para explorar e toque em um vestido.');panorama.tabIndex=0;
+  scene.before(panorama);panorama.append(scene);
+  const mobileHint=document.createElement('p');mobileHint.className='dica-vitrine-mobile';mobileHint.textContent='Deslize para explorar · toque no vestido para escolher';panorama.after(mobileHint);
+  function frameMobileRack(){
+    if(matchMedia('(max-width:600px)').matches)panorama.scrollLeft=Math.max(0,scene.clientWidth*.6-panorama.clientWidth/2);
+    else panorama.scrollLeft=0;
+    grid.querySelectorAll('.tem-recorte').forEach(fitHanger);
+  }
+  requestAnimationFrame(frameMobileRack);window.addEventListener('resize',frameMobileRack);
   const areaTitle=document.getElementById('titulo-pecas');
   areaTitle.textContent='Um cabideiro de encantos';
   document.getElementById('filtro-tipo').addEventListener('click',e=>{

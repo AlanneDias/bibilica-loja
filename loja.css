@@ -402,3 +402,14 @@ body {overflow-x:clip;}
   .topo .btn-sacola svg {height:25px;width:25px;}
   .topo .renda-continua {top:calc(100% - 8px);height:30px;}
 }
+
+.vitrine-panoramica {width:100%;}
+.dica-vitrine-mobile {display:none;}
+@media(max-width:600px){
+  .vitrine-panoramica {width:100vw;margin-inline:calc(50% - 50vw);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;}
+  .vitrine-panoramica::-webkit-scrollbar {display:none;}
+  .vitrine-panoramica .cenario-boutique:not(.modo-outras) {width:1100px;max-width:none;margin:0;border-radius:0;}
+  .dica-vitrine-mobile {display:block;text-align:center;font-size:.75rem;line-height:1.5;color:var(--taupe);margin:12px 16px 0;}
+}
+
+@media(max-width:600px){.vitrine-panoramica .peca .foto {touch-action:pan-x pan-y pinch-zoom;}}
