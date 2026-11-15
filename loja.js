@@ -166,9 +166,9 @@
   note.hidden=true;
   if(rackControls)rackControls.hidden=true;
   const panorama=document.createElement('div');panorama.className='vitrine-panoramica';
-  panorama.setAttribute('role','region');panorama.setAttribute('aria-label','Cabideiro interativo. Deslize para explorar e toque em um vestido.');panorama.tabIndex=0;
+  panorama.setAttribute('role','region');panorama.setAttribute('aria-label','Cabideiro interativo. Toque para escolher ou arraste um vestido até o cesto.');panorama.tabIndex=0;
   scene.before(panorama);panorama.append(scene);
-  const mobileHint=document.createElement('p');mobileHint.className='dica-vitrine-mobile';mobileHint.textContent='Deslize para explorar · toque no vestido para escolher';panorama.after(mobileHint);
+  const mobileHint=document.createElement('p');mobileHint.className='dica-vitrine-mobile';mobileHint.textContent='Toque para escolher ou arraste o vestido até o cesto';panorama.after(mobileHint);
   function frameMobileRack(){
     if(matchMedia('(max-width:600px)').matches)panorama.scrollLeft=Math.max(0,scene.clientWidth*.6-panorama.clientWidth/2);
     else panorama.scrollLeft=0;
@@ -242,14 +242,14 @@
     if (!photo || e.target.closest('button') || e.button !== 0) return;
     const card = photo.closest('.peca');
     if (card.classList.contains('esgotada')) return;
-    // Touch users keep native scrolling and can use the add button.
-    if (e.pointerType === 'touch') return;
-    e.preventDefault();
+    // Preserve taps; moving a garment captures both mouse and touch drags.
+    if (e.pointerType !== 'touch') e.preventDefault();
     drag = { card, photo, x:e.clientX, y:e.clientY, pointer:e.pointerId, ghost:null };
     photo.setPointerCapture(e.pointerId);
   });
   window.addEventListener('pointermove', e => {
     if (!drag || drag.pointer !== e.pointerId) return;
+    if(e.cancelable)e.preventDefault();
     if (!drag.ghost && Math.hypot(e.clientX-drag.x,e.clientY-drag.y) < 7) return;
     if (!drag.ghost) {
       hidePreview();
@@ -259,8 +259,8 @@
     drag.ghost.style.left = e.clientX+'px'; drag.ghost.style.top = e.clientY+'px';
     const r = basket.getBoundingClientRect();
     basket.classList.toggle('recebendo',e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom);
-    if (e.clientY < 70) window.scrollBy(0,-12);
-    else if (e.clientY > innerHeight-70 && !basket.classList.contains('recebendo')) window.scrollBy(0,12);
+    if (e.pointerType !== 'touch' && e.clientY < 70) window.scrollBy(0,-12);
+    else if (e.pointerType !== 'touch' && e.clientY > innerHeight-70 && !basket.classList.contains('recebendo')) window.scrollBy(0,12);
   });
   window.addEventListener('pointerup', e => {
     if (!drag || drag.pointer !== e.pointerId) return;
