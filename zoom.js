@@ -37,15 +37,16 @@
     zoom.showModal(); detail.classList.add('com-ampliacao'); paint();
     zoom.querySelector('[data-zoom="fechar"]').focus();
   }
+  function closeZoom() {detail.classList.remove('com-ampliacao');if(zoom.open)zoom.close();}
   image.addEventListener('load', paint);
   zoom.addEventListener('click', e => {
     const action = e.target.closest('[data-zoom]')?.dataset.zoom;
-    if (action === 'fechar' || e.target === zoom) zoom.close();
+    if (action === 'fechar' || e.target === zoom) closeZoom();
     if (action === 'mais') setScale(scale + .5);
     if (action === 'menos') setScale(scale - .5);
     if (action === 'ajustar') reset();
   });
-  zoom.addEventListener('cancel', e => e.stopPropagation());
+  zoom.addEventListener('cancel', e => {e.preventDefault();e.stopPropagation();closeZoom();});
   zoom.addEventListener('close', () => { detail.classList.remove('com-ampliacao'); reset(); });
   area.addEventListener('wheel', e => {
     e.preventDefault();
