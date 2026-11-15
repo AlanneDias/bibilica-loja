@@ -262,7 +262,7 @@
       hidePreview();
       const img = drag.photo.querySelector('img');
       drag.ghost = img.cloneNode();drag.ghost.removeAttribute('style');drag.ghost.removeAttribute('id');drag.ghost.src=img.dataset.frente || img.dataset.original || img.src;
-      const carriedHeight=Math.min(innerHeight*.48,Math.max(190,drag.photo.clientHeight*1.18))*1.3;
+      const carriedHeight=Math.min(innerHeight*.48,Math.max(190,drag.photo.clientHeight*1.18))*1.56;
       drag.ghost.style.height=carriedHeight+'px';drag.ghost.style.width=carriedHeight*.85+'px';
       drag.ghost.className = 'roupa-fantasma'; drag.ghost.alt = ''; document.body.append(drag.ghost); drag.card.classList.add('pegando');
     }
