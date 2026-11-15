@@ -101,8 +101,14 @@
     const input=[...activeCard.querySelectorAll('input[type=radio]')].find(i=>i.value===e.target.value);
     if(input) {input.checked=true; input.dispatchEvent(new Event('change',{bubbles:true}));paintDetail();[...detail.querySelectorAll('input')].find(i=>i.value===input.value)?.focus();}
   });
+  const revealedDresses=new Set();
   function decorate() {
+    let revealOrder=0;
     grid.querySelectorAll('.peca').forEach(card=>{
+      if(card.dataset.tipo==='Vestido'){
+        if(!revealedDresses.has(card.dataset.id)){card.style.setProperty('--entrada-ordem',revealOrder);card.classList.add('vestido-aparecendo');card.addEventListener('animationend',e=>{if(e.animationName==='entrada-vestido')card.classList.remove('vestido-aparecendo');});revealedDresses.add(card.dataset.id);}
+        revealOrder++;
+      }
       if(card.querySelector('.etiqueta-arara')) return;
       const first=card.querySelector('.foto img');
       const name=first.getAttribute('src').split('/').pop().replace(/\.(?:jpg|jpeg|png)$/,'');

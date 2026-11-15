@@ -423,3 +423,7 @@ body {overflow-x:clip;}
 }
 
 @media(max-width:600px){.abertura:not(.manifesto) .logo-abertura {max-height:168px;width:auto;}}
+
+.cenario-boutique #grade .vestido-aparecendo {animation:entrada-vestido .25s ease-out both;animation-delay:calc(var(--entrada-ordem,0) * 55ms);}
+@keyframes entrada-vestido {from{opacity:0;}to{opacity:1;}}
+@media(prefers-reduced-motion:reduce){.cenario-boutique #grade .vestido-aparecendo {animation:none;}}
