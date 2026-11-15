@@ -23,7 +23,7 @@
     const mirrored=false;
     const hookShift=(metrics.woodX-img.naturalWidth/2)*scale*(factor===1?.85:factor)*(mirrored?-1:1);
     const hookX=rack.offsetLeft+grid.offsetLeft+card.offsetLeft+photo.clientWidth/2+hookShift;
-    const railY=(253.4-.04364*(hookX/scene.clientWidth*1672))/941*scene.clientHeight;
+    const railY=(233-.025*(hookX/scene.clientWidth*1672))/941*scene.clientHeight;
     const railLocal=railY-rack.offsetTop-grid.offsetTop;
     const stemLength=scene.clientWidth*.018;
     const offset=railLocal+stemLength-metrics.woodY*scale*factor;
@@ -176,7 +176,7 @@
   scene.before(panorama);panorama.append(scene);
   const mobileHint=document.createElement('p');mobileHint.className='dica-vitrine-mobile';mobileHint.textContent='Toque para escolher ou arraste o vestido até o cesto';panorama.after(mobileHint);
   function frameMobileRack(){
-    if(matchMedia('(max-width:600px)').matches)panorama.scrollLeft=Math.max(0,scene.clientWidth*.6-panorama.clientWidth/2);
+    if(matchMedia('(max-width:600px)').matches)panorama.scrollLeft=Math.max(0,scene.clientWidth*.52-panorama.clientWidth/2);
     else panorama.scrollLeft=0;
     grid.querySelectorAll('.tem-recorte').forEach(fitHanger);
   }

@@ -17,3 +17,5 @@ Atualização 15/11/2026 — imagens pelo recurso integrado de geração/ediçã
 - assets/laterais/vestido-moranguinho-azul.png: versão da mesma peça girada aproximadamente 55 graus, preservando detalhes; orientação final ajustada no CSS para acompanhar a fileira.
 - assets/sem-lacos/*.png e quatro recortes revisados: remover somente o laço acessório preso ao cabide, preservando laços pertencentes às roupas e os demais detalhes.
 As fotos da modelo e do vestido fornecidas pela cliente permanecem em assets/vestido-moranguinho-azul*.jpg.
+
+Cenário ampliado: assets/boutique-cabideiro-amplo.png. Edição integrada de imagens: ampliar somente o cabideiro de madeira horizontalmente, preservar altura, ambiente floral, iluminação e piso; sem roupas ou cestas na imagem de fundo.

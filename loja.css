@@ -436,3 +436,17 @@ body {overflow-x:clip;}
 .topo .btn-sacola .qtd {background:transparent;border:0;box-shadow:none;min-width:auto;}
 
 .roupa-fantasma {transform:translate(-50%,-40%);}
+/* Separação entre tamanho, disponibilidade e confirmação na janela da peça. */
+.detalhe-info .tamanhos {margin-top:16px;gap:10px;}
+.detalhe-info .tamanhos legend {margin-bottom:10px;}
+.detalhe-info .estoque-msg {margin:14px 0 0;line-height:1.5;min-height:0;}
+.detalhe-info .estoque-msg:empty {display:none;}
+.detalhe-info .acoes {margin-top:18px;gap:12px;}
+
+/* Cabideiro ampliado: mais espaço real entre as peças sobre a haste. */
+.cenario-boutique:not(.modo-outras) {background-image:url('assets/boutique-cabideiro-amplo.png');}
+.cenario-boutique:not(.modo-outras) .arara-estrutura {left:27%;width:50%;}
+@media(max-width:600px){.vitrine-panoramica .cenario-boutique:not(.modo-outras) {width:580px;}}
+
+.topo nav {transform:translateY(-5px);}
+@media(max-width:600px){.topo nav {transform:translateY(-2px);}}
