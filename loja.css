@@ -386,8 +386,11 @@ body {overflow-x:clip;}
 .cenario-boutique .sacola-bibilica::before {left:6%;right:-16%;bottom:-3%;height:10%;background:radial-gradient(ellipse at 45% 50%,rgba(65,39,19,.36),rgba(65,39,19,.12) 44%,transparent 74%);filter:blur(3px);transform:skewX(-28deg);}
 .cenario-boutique .sacola-bibilica::after {content:'';position:absolute;z-index:-1;left:29%;bottom:-1%;width:70%;height:7%;border-radius:50%;background:rgba(68,42,20,.15);filter:blur(4px);transform:translateX(12%) skewX(-28deg);pointer-events:none;}
 
-.topo nav {justify-content:center;}
+.topo nav {justify-content:flex-end;}
 
 .topo .wrap {align-items:center;padding-top:8px;padding-bottom:20px;} .topo nav {justify-content:flex-end;align-items:center;}
 
 .topo .wrap {padding-block:16px;}
+
+.grade-catalogo .peca .foto {background:var(--papel);}
+.grade-catalogo .peca .foto img {mask-image:none;object-fit:cover;object-position:center;}
