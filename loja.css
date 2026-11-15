@@ -394,3 +394,11 @@ body {overflow-x:clip;}
 
 .grade-catalogo .peca .foto {background:var(--papel);}
 .grade-catalogo .peca .foto img {mask-image:none;object-fit:cover;object-position:center;}
+/* Cabeçalho compacto em telas pequenas, com área de toque confortável. */
+@media(max-width:600px){
+  .topo .wrap {min-height:60px;padding:8px 16px;}
+  .topo nav {gap:14px;}
+  .topo .btn-sacola {height:44px;min-height:44px;padding:5px 12px;}
+  .topo .btn-sacola svg {height:25px;width:25px;}
+  .topo .renda-continua {top:calc(100% - 8px);height:30px;}
+}
