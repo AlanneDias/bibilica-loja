@@ -14,7 +14,7 @@
   function fitHanger(card){
     const img=card.querySelector('.foto img:not(.metal-real)');
     if(!img?.complete||!img.naturalWidth)return;
-    const metrics=window.BIBILICA_HOOKS?.[img.getAttribute('src')];if(!metrics)return;
+    const metrics=window.BIBILICA_HOOKS?.[img.getAttribute('src').split('?')[0]];if(!metrics)return;
     const photo=card.querySelector('.foto');const width=parseFloat(getComputedStyle(img).width);
     const scale=Math.min(width/img.naturalWidth,photo.clientHeight/img.naturalHeight);
     const factor=card.classList.contains('em-destaque')?1.1:1;
@@ -107,7 +107,7 @@
       const first=card.querySelector('.foto img');
       const name=first.getAttribute('src').split('/').pop().replace(/\.(?:jpg|jpeg|png)$/,'');
       if(cutoutNames.has(name)) {
-        first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png';first.dataset.lateral='assets/laterais/'+name+'.png';first.src=first.dataset.lateral;
+        first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png?v=20261115';first.dataset.lateral='assets/laterais/'+name+'.png';first.src=first.dataset.lateral;
         card.classList.add('tem-recorte');
         const hook=document.createElement('span');hook.className='gancho-direita gancho-real';card.querySelector('.foto').append(hook);
         first.addEventListener('load',()=>fitHanger(card));fitHanger(card);
