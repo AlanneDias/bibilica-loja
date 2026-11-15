@@ -431,3 +431,6 @@ body {overflow-x:clip;}
 .topo .btn-sacola {background:#e8c4c8;color:#603a30;}
 .topo .btn-sacola:hover {background:#dfb2b9;}
 .topo .btn-sacola .qtd {background:#fff7f2;color:#603a30;}
+.btn[data-acao="add"] {background:#e8c4c8;color:#603a30;}
+.btn[data-acao="add"]:hover:not(:disabled) {background:#dfb2b9;}
+.topo .btn-sacola .qtd {background:transparent;border:0;box-shadow:none;min-width:auto;}
