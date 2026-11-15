@@ -421,3 +421,5 @@ body {overflow-x:clip;}
   .vitrine-panoramica {overflow:hidden;touch-action:pan-y pinch-zoom;}
   .vitrine-panoramica .peca .foto {touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;}
 }
+
+@media(max-width:600px){.abertura:not(.manifesto) .logo-abertura {max-height:168px;width:auto;}}
