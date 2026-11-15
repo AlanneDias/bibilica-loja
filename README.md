@@ -4,6 +4,16 @@ Uma boutique infantil digital com vestidos pendurados em um cabideiro interativo
 
 **[Visite a loja](https://alannedias.github.io/bibilica-loja/)**
 
+## Apresentação atual
+
+![Abertura floral da boutique](docs/01-abertura.jpg)
+
+![Cabideiro interativo e cestas](docs/02-vitrine.jpg)
+
+![Detalhes do vestido e seleção de tamanho](docs/03-produto.jpg)
+
+![Navegação no celular](docs/04-celular.jpg)
+
 ## A experiência
 
 - Passe o mouse sobre um vestido para destacá-lo de frente. Clique para ver fotos, preço, tamanhos e quantidade.
@@ -17,6 +27,8 @@ A identidade combina creme, rosa suave, verde-sálvia e marrom, com flores em aq
 ## Estoque e pedidos
 
 O estoque é consultado em uma planilha do Google Sheets. Cada tamanho tem sua quantidade, e a sacola respeita o limite disponível. Se a consulta falhar, o site utiliza o estoque de referência configurado no código.
+
+A cliente escolhe moto táxi em Campina Grande, Correios ou retirada sem frete. Na retirada, o endereço é informado no ato do pagamento e não é solicitado endereço de entrega.
 
 O pedido enviado ao WhatsApp inclui as peças, tamanhos, quantidades, entrega, endereço e forma de pagamento escolhida. A confirmação final é feita pela loja.
 
