@@ -20,7 +20,7 @@ Uma boutique infantil digital com vestidos pendurados em um cabideiro interativo
 - Arraste uma peça até a cesta: a roupa entra visualmente, a cesta balança e a seleção de tamanho abre para confirmar a compra.
 - Explore vestidos, conjuntos e rompers no catálogo abaixo do ambiente da loja.
 - Reúna peças diferentes na mesma sacola e envie o pedido completo pelo WhatsApp. O site não processa pagamentos.
-- No celular, toque na peça para abrir os detalhes e use o catálogo responsivo para comprar sem precisar arrastar.
+- No celular, deslize a vitrine ampliada para explorar o cabideiro e toque na peça para abrir os detalhes. O cabeçalho compacto e o catálogo responsivo facilitam a compra sem precisar arrastar roupas.
 
 A identidade combina creme, rosa suave, verde-sálvia e marrom, com flores em aquarela, renda marfim, madeira clara e cestas de vime.
 
