@@ -14,11 +14,14 @@ Uma boutique infantil digital com vestidos pendurados em um cabideiro interativo
 
 ![Navegação no celular](docs/04-celular.jpg)
 
+![Ampliação para observar os detalhes da peça](docs/05-zoom.jpg)
+
 ## A experiência
 
 - Passe o mouse sobre um vestido para destacá-lo de frente. Clique para ver fotos, preço, tamanhos e quantidade.
 - Arraste uma peça até a cesta: a roupa entra visualmente, a cesta balança e a seleção de tamanho abre para confirmar a compra.
 - Explore vestidos, conjuntos e rompers no catálogo abaixo do ambiente da loja.
+- Toque na foto ou na lupa para abrir a ampliação. Use os controles até 4x, a roda do mouse ou a pinça com dois dedos; arraste a imagem para explorar o tecido e os bordados.
 - Reúna peças diferentes na mesma sacola e envie o pedido completo pelo WhatsApp. O site não processa pagamentos.
 - No celular, a cena tem enquadramento fixo, sem rolagem lateral. Toque em uma peça para abrir os detalhes ou arraste-a com o dedo até o cesto; a cesta balança e a seleção de tamanho abre antes da confirmação. O cabeçalho é compacto e o catálogo completo permanece abaixo.
 
@@ -39,6 +42,7 @@ O pedido enviado ao WhatsApp inclui as peças, tamanhos, quantidades, entrega, e
 | `index.html` | Estrutura, cadastro de peças, estoque, totais e pedido pelo WhatsApp |
 | `loja.css` | Identidade visual, ambiente, catálogo e animações |
 | `loja.js` | Interação do cabideiro, detalhes das peças, catálogo e cesta |
+| `zoom.js` | Lupa, controles de ampliação e gestos nas fotos |
 | `encaixe-cabides.js` | Pontos de alinhamento das imagens ao cabideiro |
 | `assets/` | Fotografias, recortes transparentes, logotipo e decoração |
 | `estoque-bibilica.xlsx` | Modelo de organização do estoque |
