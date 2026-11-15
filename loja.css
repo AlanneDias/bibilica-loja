@@ -434,3 +434,5 @@ body {overflow-x:clip;}
 .btn[data-acao="add"] {background:#e8c4c8;color:#603a30;}
 .btn[data-acao="add"]:hover:not(:disabled) {background:#dfb2b9;}
 .topo .btn-sacola .qtd {background:transparent;border:0;box-shadow:none;min-width:auto;}
+
+.roupa-fantasma {transform:translate(-50%,-40%);}

@@ -250,6 +250,7 @@
     if (card.classList.contains('esgotada')) return;
     // Preserve taps; moving a garment captures both mouse and touch drags.
     if (e.pointerType !== 'touch') e.preventDefault();
+    const front=photo.querySelector('img')?.dataset.frente;if(front){const preload=new Image();preload.src=front;}
     drag = { card, photo, x:e.clientX, y:e.clientY, pointer:e.pointerId, ghost:null };
     photo.setPointerCapture(e.pointerId);
   });
@@ -260,7 +261,10 @@
     if (!drag.ghost) {
       hidePreview();
       const img = drag.photo.querySelector('img');
-      drag.ghost = img.cloneNode();drag.ghost.removeAttribute('style');drag.ghost.removeAttribute('id'); drag.ghost.className = 'roupa-fantasma'; drag.ghost.alt = ''; document.body.append(drag.ghost); drag.card.classList.add('pegando');
+      drag.ghost = img.cloneNode();drag.ghost.removeAttribute('style');drag.ghost.removeAttribute('id');drag.ghost.src=img.dataset.frente || img.dataset.original || img.src;
+      const carriedHeight=Math.min(innerHeight*.48,Math.max(190,drag.photo.clientHeight*1.18));
+      drag.ghost.style.height=carriedHeight+'px';drag.ghost.style.width=carriedHeight*.85+'px';
+      drag.ghost.className = 'roupa-fantasma'; drag.ghost.alt = ''; document.body.append(drag.ghost); drag.card.classList.add('pegando');
     }
     drag.ghost.style.left = e.clientX+'px'; drag.ghost.style.top = e.clientY+'px';
     const r = basket.getBoundingClientRect();
