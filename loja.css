@@ -408,8 +408,11 @@ body {overflow-x:clip;}
 @media(max-width:600px){
   .vitrine-panoramica {width:100vw;margin-inline:calc(50% - 50vw);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;}
   .vitrine-panoramica::-webkit-scrollbar {display:none;}
-  .vitrine-panoramica .cenario-boutique:not(.modo-outras) {width:1100px;max-width:none;margin:0;border-radius:0;}
+  .vitrine-panoramica .cenario-boutique:not(.modo-outras) {width:720px;max-width:none;margin:0;border-radius:0;}
   .dica-vitrine-mobile {display:block;text-align:center;font-size:.75rem;line-height:1.5;color:var(--taupe);margin:12px 16px 0;}
 }
 
 @media(max-width:600px){.vitrine-panoramica .peca .foto {touch-action:pan-x pan-y pinch-zoom;}}
+@media(max-width:600px){
+  .vitrine-panoramica .cenario-boutique:not(.modo-outras) .sacola-bibilica {left:35%;bottom:4%;width:19%;z-index:6;}
+}
