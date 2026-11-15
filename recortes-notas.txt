@@ -1,0 +1,19 @@
+Recortes da arara — Bibilica
+
+Ferramenta: image_gen integrada, com transparência ativada.
+Arquivos finais: assets/recortes/vestido-*.png.
+As fotografias originais continuam sendo usadas na janela de detalhes.
+
+Prompt aplicado individualmente às fotografias de cada vestido:
+Use case: background-extraction. Edit target: supplied Bibilica infant dress photograph (filename). Create an ecommerce transparent PNG of ONLY THIS EXACT dress, hanging upright on a small natural wooden hanger with metal hook, front-facing, centered, entire garment visible with narrow transparent margins. Remove all background, person/body/hair/hands/legs if present, mannequin if present, plants, furniture and scenery. Preserve the real dress color, all embroidery motifs and placement, fabric patterns, lace, collar, bows, sleeve design, skirt cut and photographic texture faithfully. If already on hanger retain it; if worn, transfer the garment onto a wooden hanger, filling only the occluded garment portions conservatively. Do not invent a different design. No person, no text, no scene, no shadow background, no checkerboard; real alpha transparency. This will hang from a boutique rail.
+
+Para vestido-cerejinha, foi solicitado remover somente o ambiente e preservar o cabide existente e o vestido completo.
+
+As imagens preparadas com IA podem reconstruir trechos encobertos ou ausentes na foto. As fotos originais dos detalhes devem orientar a avaliação do produto real.
+
+Atualização 15/11/2026 — imagens pelo recurso integrado de geração/edição.
+- assets/florais-laterais.png: ramos delicados em aquarela rosa e verde, margem transparente para compor os lados da abertura.
+- assets/recortes/vestido-moranguinho-azul.png: preservar vestido listrado azul/branco, bordado de morangos e margaridas, gola boneca, renda e mangas; apresentar de frente em cabide de madeira sem laço, fundo transparente.
+- assets/laterais/vestido-moranguinho-azul.png: versão da mesma peça girada aproximadamente 55 graus, preservando detalhes; orientação final ajustada no CSS para acompanhar a fileira.
+- assets/sem-lacos/*.png e quatro recortes revisados: remover somente o laço acessório preso ao cabide, preservando laços pertencentes às roupas e os demais detalhes.
+As fotos da modelo e do vestido fornecidas pela cliente permanecem em assets/vestido-moranguinho-azul*.jpg.

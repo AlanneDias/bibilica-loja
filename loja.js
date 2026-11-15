@@ -20,7 +20,7 @@
     const factor=card.classList.contains('em-destaque')?1.1:1;
     const scene=card.closest('.cenario-boutique'),rack=card.closest('.arara-estrutura');
     if(!scene||!rack)return;
-    const mirrored=img.getAttribute("src")==="assets/laterais/vestido-moranguinho-azul.png";
+    const mirrored=false;
     const hookShift=(metrics.woodX-img.naturalWidth/2)*scale*(factor===1?.85:factor)*(mirrored?-1:1);
     const hookX=rack.offsetLeft+grid.offsetLeft+card.offsetLeft+photo.clientWidth/2+hookShift;
     const railY=(253.4-.04364*(hookX/scene.clientWidth*1672))/941*scene.clientHeight;
@@ -72,7 +72,7 @@
     detail.innerHTML = '<button type="button" class="fechar-detalhe" aria-label="Fechar detalhes">×</button><div class="detalhe-corpo"><div class="detalhe-imagens"></div><div class="detalhe-info"><p class="detalhe-marca">Bibilica · Boutique Infantil</p></div></div>';
     const images = [...activeCard.querySelectorAll('.foto img:not(.acabamento-cabide):not(.metal-real)')].map(img=>{const original=img.cloneNode();original.removeAttribute('style');original.src=img.dataset.original || img.src;return original;});
     const front=activeCard.querySelector('.foto img')?.dataset.frente;
-    if(front) {const frontImage=new Image();frontImage.src=front;frontImage.alt=activeCard.querySelector('h3').textContent+' no cabide';images.unshift(frontImage);}
+    if(front && !images.some(img=>img.src.split('?')[0].endsWith(front.split('?')[0]))) {const frontImage=new Image();frontImage.src=front;frontImage.alt=activeCard.querySelector('h3').textContent+' no cabide';images.unshift(frontImage);}
     const large = images[0].cloneNode(); large.loading = 'eager';
     detail.querySelector('.detalhe-imagens').append(large);
     if (images.length > 1) {
@@ -107,7 +107,7 @@
       const first=card.querySelector('.foto img');
       const name=first.getAttribute('src').split('/').pop().replace(/\.(?:jpg|jpeg|png)$/,'');
       if(cutoutNames.has(name)) {
-        first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png?v=20261115';first.dataset.lateral='assets/laterais/'+name+'.png';first.src=first.dataset.lateral;
+        first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png?v=20261115';first.dataset.lateral='assets/laterais/'+name+(name==='vestido-moranguinho-azul'?'-direita':'')+'.png';first.src=first.dataset.lateral;
         card.classList.add('tem-recorte');
         const hook=document.createElement('span');hook.className='gancho-direita gancho-real';card.querySelector('.foto').append(hook);
         first.addEventListener('load',()=>fitHanger(card));fitHanger(card);

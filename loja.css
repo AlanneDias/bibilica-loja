@@ -387,3 +387,7 @@ body {overflow-x:clip;}
 .cenario-boutique .sacola-bibilica::after {content:'';position:absolute;z-index:-1;left:29%;bottom:-1%;width:70%;height:7%;border-radius:50%;background:rgba(68,42,20,.15);filter:blur(4px);transform:translateX(12%) skewX(-28deg);pointer-events:none;}
 
 .topo nav {justify-content:center;}
+
+.topo .wrap {align-items:center;padding-top:8px;padding-bottom:20px;} .topo nav {justify-content:flex-end;align-items:center;}
+
+.topo .wrap {padding-block:16px;}
