@@ -34,7 +34,7 @@
   function open(photo) {
     image.src = photo.currentSrc || photo.src; image.alt = photo.alt;
     scale = 1; x = 0; y = 0;
-    zoom.showModal(); paint();
+    zoom.showModal(); detail.classList.add('com-ampliacao'); paint();
     zoom.querySelector('[data-zoom="fechar"]').focus();
   }
   image.addEventListener('load', paint);
@@ -46,7 +46,7 @@
     if (action === 'ajustar') reset();
   });
   zoom.addEventListener('cancel', e => e.stopPropagation());
-  zoom.addEventListener('close', reset);
+  zoom.addEventListener('close', () => { detail.classList.remove('com-ampliacao'); reset(); });
   area.addEventListener('wheel', e => {
     e.preventDefault();
     const box = area.getBoundingClientRect();

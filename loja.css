@@ -471,3 +471,7 @@ body {overflow-x:clip;}
 .zoom-area img {position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain;pointer-events:none;transform-origin:center;will-change:transform;}
 .zoom-dica {margin:0;padding:10px 14px;text-align:center;font-size:.75rem;line-height:1.4;border-top:1px solid #eadbd0;}
 @media(max-width:650px){.abrir-zoom {top:28px;right:28px;}.zoom-barra > span {display:none;}.zoom-controles {width:100%;justify-content:center;}.zoom-peca {height:94dvh;max-height:94dvh;}}
+
+/* A foto ampliada tem um único fechamento; a lupa não invade o X do produto. */
+.detalhe-loja.com-ampliacao .fechar-detalhe {visibility:hidden;pointer-events:none;}
+@media(max-width:650px){.detalhe-imagens .abrir-zoom {top:64px;right:28px;}}
