@@ -427,3 +427,7 @@ body {overflow-x:clip;}
 .cenario-boutique #grade .vestido-aparecendo {animation:entrada-vestido .25s ease-out both;animation-delay:calc(var(--entrada-ordem,0) * 55ms);}
 @keyframes entrada-vestido {from{opacity:0;}to{opacity:1;}}
 @media(prefers-reduced-motion:reduce){.cenario-boutique #grade .vestido-aparecendo {animation:none;}}
+/* Sacola com rosa suave para acompanhar a identidade delicada da marca. */
+.topo .btn-sacola {background:#e8c4c8;color:#603a30;}
+.topo .btn-sacola:hover {background:#dfb2b9;}
+.topo .btn-sacola .qtd {background:#fff7f2;color:#603a30;}
