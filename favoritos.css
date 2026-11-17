@@ -1,0 +1,17 @@
+/* Favoritos (coração) */
+.favorito { position: absolute; top: 12px; right: 12px; z-index: 3; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,252,248,.92); box-shadow: 0 2px 10px -3px rgba(96,58,48,.35); display: grid; place-items: center; cursor: pointer; padding: 0; transition: transform .15s ease, background .2s; }
+.favorito svg { width: 22px; height: 22px; fill: transparent; stroke: var(--marrom); stroke-width: 1.6; transition: fill .2s, stroke .2s; }
+.favorito:hover { transform: scale(1.08); }
+.favorito[aria-pressed="true"] svg { fill: #D9667E; stroke: #C2506A; }
+.favorito:focus-visible { outline: 2px solid var(--marrom); outline-offset: 2px; }
+.favorito.pulsar svg { animation: fav-pulsar .45s ease; }
+@keyframes fav-pulsar { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
+.favorito-texto { position: static; width: auto; height: auto; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 8px 16px 8px 12px; margin: -8px 0 18px; border: 1px solid var(--rosa); box-shadow: none; color: var(--marrom); font: inherit; font-size: .88rem; }
+.favorito-texto svg { width: 20px; height: 20px; }
+.favorito-texto[aria-pressed="true"] { background: #FBE8EC; border-color: #E8A9B6; }
+.filtros-catalogo .filtro-favoritas { display: inline-flex; align-items: center; gap: 6px; }
+.filtro-favoritas svg { width: 16px; height: 16px; fill: #D9667E; stroke: none; }
+.filtro-favoritas[aria-pressed="true"] svg { fill: #F2D2DC; }
+.fav-qtd { font-variant-numeric: tabular-nums; opacity: .75; }
+.favoritos-vazio { text-align: center; color: var(--taupe); padding: 32px 16px 8px; line-height: 1.6; }
+@media (prefers-reduced-motion: reduce) { .favorito, .favorito svg { transition: none; animation: none !important; } }
