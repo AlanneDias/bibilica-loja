@@ -665,14 +665,164 @@ const PECAS = [
    - 0 = esgotado: o tamanho aparece riscado. Se todos os tamanhos zerarem, a peça sai do site.
    - 1 ou 2 = mostra "últimas unidades".
    Se a planilha não carregar, o site usa a lista ESTOQUE abaixo. */
-const PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/15rKAmNW9eVoZFP7FPq0yqrk7gFxDkbXJLgwvCbtaqow/gviz/tq?tqx=out:csv&sheet=Estoque";
+const PLANILHA_CSV = "https://docs.google.com/spreadsheets/d/15rKAmNW9eVoZFP7FPq0yqrk7gFxDkbXJLgwvCbtaqow/gviz/tq?tqx=out:csv&gid=1015473785";
 const ESCONDER_ESGOTADAS = true;
-const ESTOQUE_PADRAO = 1;   // tamanho sem quantidade informada = 1 peça (peça única)
+// Estoque conferido em 19/11/2026; usado se a leitura online falhar.
+// Tamanhos ausentes não são presumidos disponíveis.
+const ESTOQUE_PADRAO = 0;
 let ESTOQUE = {
-  "BIB-001": { "G": 0 },
-  "BIB-002": { "G": 0 },
-  "BIB-016": { "1": 2 },
-  "BIB-029": { "2 anos": 2 }
+  "BIB-001": {
+    "1": 1,
+    "2": 0,
+    "3": 0,
+    "G": 0,
+    "4/5": 1,
+    "6/7": 1
+  },
+  "BIB-002": {
+    "1": 1,
+    "2": 1,
+    "3": 0,
+    "G": 1,
+    "4/5": 1,
+    "6/7": 0
+  },
+  "BIB-003": {
+    "P": 1,
+    "M": 1,
+    "1 ano": 1,
+    "4 anos": 1
+  },
+  "BIB-004": {
+    "3 anos": 1,
+    "4/5 anos": 1
+  },
+  "BIB-005": {
+    "2 anos": 1
+  },
+  "BIB-006": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "G": 1,
+    "4/5": 1,
+    "6/7": 0
+  },
+  "BIB-007": {
+    "2": 0,
+    "3": 0,
+    "6/7": 0
+  },
+  "BIB-008": {
+    "1": 0,
+    "2": 1,
+    "3": 0,
+    "G": 1,
+    "4/5": 0,
+    "6/7": 0
+  },
+  "BIB-009": {
+    "1": 1,
+    "3": 1,
+    "P": 1,
+    "M": 1,
+    "G": 1,
+    "4/5": 1,
+    "6/7": 1
+  },
+  "BIB-010": {
+    "3 anos": 1,
+    "4 anos": 1
+  },
+  "BIB-011": {
+    "2 anos": 1
+  },
+  "BIB-012": {
+    "P (3 meses)": 1
+  },
+  "BIB-013": {
+    "P (3 meses)": 2
+  },
+  "BIB-014": {
+    "1": 0,
+    "2": 1,
+    "3": 1,
+    "P": 1,
+    "M": 1,
+    "4 anos": 1
+  },
+  "BIB-015": {
+    "1 ano": 1,
+    "2 anos": 1
+  },
+  "BIB-016": {
+    "1": 2,
+    "4/5 anos": 1
+  },
+  "BIB-017": {
+    "G": 1,
+    "1 ano": 1
+  },
+  "BIB-018": {
+    "4/5 anos": 1
+  },
+  "BIB-019": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4/5 anos": 1
+  },
+  "BIB-020": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "G": 1,
+    "4/5 anos": 0
+  },
+  "BIB-021": {
+    "G (9 a 12 meses)": 1
+  },
+  "BIB-022": {
+    "M (6 a 9 meses)": 0
+  },
+  "BIB-023": {
+    "M (6 a 9 meses)": 1
+  },
+  "BIB-024": {
+    "2 anos": 1
+  },
+  "BIB-025": {
+    "4 anos": 1
+  },
+  "BIB-026": {
+    "1": 0,
+    "2": 0,
+    "3": 1,
+    "M": 1,
+    "G": 1,
+    "4/5 anos": 1
+  },
+  "BIB-027": {
+    "G": 1,
+    "1 ano": 1,
+    "4 anos": 1
+  },
+  "BIB-028": {
+    "3 anos": 1
+  },
+  "BIB-029": {
+    "2 anos": 2
+  },
+  "BIB-030": {
+    "4/5 anos": 1,
+    "6/7 anos": 1
+  },
+  "BIB-031": {
+    "P": 1,
+    "M": 0,
+    "G": 1,
+    "4 anos": 1
+  }
 };
 /* ============================================== */
 
@@ -687,7 +837,7 @@ const peca = id => PECAS.find(p => p.id === id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /* Estoque */
-const norm = t => String(t).trim().toLowerCase().replace(/\s+/g, " ");
+const norm = t => String(t).trim().toLowerCase().replace(/\s*anos?\b/g, "").replace(/\s+/g, " ");
 const estoque = (id, tam) => {
   const e = ESTOQUE[id]; if (!e) return ESTOQUE_PADRAO;
   const k = Object.keys(e).find(x => norm(x) === norm(tam));
@@ -826,6 +976,7 @@ async function carregarPlanilha() {
       const n = parseInt(q, 10); if (isNaN(n)) return;
       (novo[ref] = novo[ref] || {})[tam] = Math.max(n, 0);
     });
+    if (Object.keys(novo).length < 20) throw new Error("planilha retornou poucos produtos; mantendo estoque de segurança");
     const zerados = Object.entries(novo).flatMap(([ref, t]) => Object.entries(t).filter(([, q]) => q <= 0).map(([tam]) => `${ref} ${tam}`));
     ESTOQUE = novo; ajustarSacola(); salvar(); montarVitrine(); render();
     diagnostico(`✓ Planilha lida às ${new Date().toLocaleTimeString("pt-BR")} · ${dados.length} linhas · zerados: ${zerados.join(", ") || "nenhum"}`, true);
@@ -835,6 +986,9 @@ async function carregarPlanilha() {
   }
 }
 carregarPlanilha();
+// Sincronização periódica enquanto a loja está aberta e ao retornar à aba.
+setInterval(() => { if (!document.hidden) carregarPlanilha(); }, 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) carregarPlanilha(); });
 
 grade.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b) return;
