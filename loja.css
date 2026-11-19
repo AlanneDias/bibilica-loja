@@ -490,3 +490,14 @@ body {overflow-x:clip;}
   .topo nav {gap:12px;}
   .topo nav a.link {display:inline-flex;align-items:center;min-height:44px;font-size:.65rem;letter-spacing:.12em;}
 }
+
+/* A peça deixa o cabideiro durante o movimento, sem sombra artificial. */
+#grade .peca.pegando {opacity:1;}
+#grade .peca.pegando .foto > img,
+#grade .peca.pegando .foto .galeria img,
+#grade .peca.pegando .gancho-direita {visibility:hidden!important;}
+.roupa-fantasma {background:transparent!important;box-shadow:none!important;filter:none!important;border:0!important;}
+.cenario-boutique:not(.modo-outras) #grade .tem-recorte .foto > img,
+.cenario-boutique:not(.modo-outras) #grade .tem-recorte .galeria img,
+.cenario-boutique:not(.modo-outras) #grade .tem-recorte.em-destaque .foto > img,
+.cenario-boutique:not(.modo-outras) #grade .tem-recorte.em-destaque .galeria img {filter:none!important;box-shadow:none!important;}
