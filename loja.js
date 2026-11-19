@@ -235,13 +235,16 @@
       await animation.finished.catch(()=>{});
     }
     ghost.remove();
+    card.classList.remove('pegando');
     if(sequence===basketSequence&&!detail.open)bounceThenChoose(card);
   }
   new MutationObserver(sync).observe(counter, { childList:true, characterData:true, subtree:true }); sync();
   let drag = null;
-  function cleanup() {
+  function cleanup(keepGarmentHidden=false) {
     if (!drag) return;
-    drag.ghost?.remove(); drag.card.classList.remove('pegando'); basket.classList.remove('recebendo'); drag = null;
+    drag.ghost?.remove();
+    if(!keepGarmentHidden)drag.card.classList.remove('pegando');
+    basket.classList.remove('recebendo'); drag = null;
   }
   grid.addEventListener('pointerdown', e => {
     const photo = e.target.closest('.foto');
@@ -276,11 +279,12 @@
     if (!drag || drag.pointer !== e.pointerId) return;
     const card = drag.card;
     if(drag.ghost) suppressClickUntil=Date.now()+400;
-    if (drag.ghost && basket.classList.contains('recebendo')) {
+    const dropped=Boolean(drag.ghost && basket.classList.contains('recebendo'));
+    if(dropped){
       const ghost=drag.ghost;drag.ghost=null;
       dropIntoBasket(card,ghost);
     }
-    cleanup();
+    cleanup(dropped);
   });
   window.addEventListener('pointercancel',cleanup);
   window.addEventListener('blur',cleanup);
