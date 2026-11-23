@@ -23,3 +23,5 @@ Object.assign(window.BIBILICA_HOOKS, {"assets/recortes/vestido-smock-vermelho-fr
 Object.assign(window.BIBILICA_HOOKS,{"assets/recortes/vestido-smock-vermelho-frente-alternativa-cabide-claro.png":{"woodX":294,"woodY":80},"assets/laterais/vestido-smock-vermelho-frente-alternativa-cabide-claro.png":{"woodX":279,"woodY":80},"assets/recortes/vestido-lavanda-frente-cabide-claro.png":{"woodX":295,"woodY":80},"assets/laterais/vestido-lavanda-frente-cabide-claro.png":{"woodX":278,"woodY":80}});
 
 Object.assign(window.BIBILICA_HOOKS,{"assets/laterais/vestido-smock-vermelho-frente-alternativa-cabide-perfil.png":{"woodX":275,"woodY":77},"assets/laterais/vestido-lavanda-frente-cabide-perfil.png":{"woodX":274,"woodY":77}});
+
+Object.assign(window.BIBILICA_HOOKS,{"assets/recortes/vestido-smock-vermelho-frente-alternativa-cabide-gola.png":{"woodX":294,"woodY":84},"assets/recortes/vestido-lavanda-frente-cabide-gola.png":{"woodX":295,"woodY":84}});
