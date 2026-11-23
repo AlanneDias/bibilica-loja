@@ -305,7 +305,12 @@ body {overflow-x:clip;}
 .gancho-direita svg {display:block;width:100%;height:100%;overflow:visible;}
 .cenario-boutique:not(.modo-outras) .em-destaque .gancho-direita {height:2.86cqw;}
 @media(max-width:900px){.grade-catalogo {grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}}
-@media(max-width:550px){.grade-catalogo {grid-template-columns:1fr;}.catalogo-completo {margin-top:45px;}}
+@media(max-width:550px){.grade-catalogo {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.grade-catalogo .peca .info {padding:10px;}
+.grade-catalogo .peca .acoes {display:flex;flex-direction:column;align-items:stretch;}
+.grade-catalogo .peca .btn {min-width:0;white-space:normal;}
+.grade-catalogo .peca .tamanhos {min-inline-size:0;}
+.grade-catalogo .peca h3 {overflow-wrap:anywhere;}.catalogo-completo {margin-top:45px;}}
 /* Cabideiro primeiro; catálogo e controles abaixo. */
 .topo {border:0;box-shadow:none;}
 .vitrine > .wrap {padding-top:24px;}
