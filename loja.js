@@ -133,8 +133,8 @@
       const name=first.getAttribute('src').split('/').pop().replace(/\.(?:jpg|jpeg|png)$/,'');
       if(cutoutNames.has(name)) {
         first.dataset.original=first.getAttribute('src');first.dataset.frente='assets/recortes/'+name+'.png?v=20261115';first.dataset.lateral='assets/laterais/'+name+(name==='vestido-moranguinho-azul'?'-direita':'')+'.png';if (card.dataset.id === 'BIB-054' || card.dataset.id === 'BIB-057') {
-          first.dataset.frente = 'assets/recortes/' + name + '-madeira.png';
-          first.dataset.lateral = 'assets/laterais/' + name + '-madeira.png';
+          first.dataset.frente = 'assets/recortes/' + name + '-cabide-claro.png';
+          first.dataset.lateral = 'assets/laterais/' + name + '-cabide-claro.png';
         }
         first.src=first.dataset.lateral;
         card.classList.add('tem-recorte');
