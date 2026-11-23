@@ -17,3 +17,5 @@ Object.assign(window.BIBILICA_HOOKS, {
     "woodX": 148
   }
 });
+
+Object.assign(window.BIBILICA_HOOKS, {"assets/recortes/vestido-smock-vermelho-frente-alternativa-madeira.png":{"woodX":294,"woodY":83},"assets/laterais/vestido-smock-vermelho-frente-alternativa-madeira.png":{"woodX":279,"woodY":83},"assets/recortes/vestido-lavanda-frente-madeira.png":{"woodX":295,"woodY":83},"assets/laterais/vestido-lavanda-frente-madeira.png":{"woodX":278,"woodY":83}});
