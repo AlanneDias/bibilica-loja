@@ -4,11 +4,11 @@
 (() => {
   const CHAVE = 'bibilica-favoritos';
   let favoritos = new Set();
-  try { favoritos = new Set(JSON.parse(localStorage.getItem(CHAVE) || '[]')); } catch (e) {}
+  try { favoritos = new Set(JSON.parse(localStorage.getItem(CHAVE) || '[]').map(modeloFavorito)); } catch (e) {}
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify([...favoritos])); } catch (e) {} };
 
   const coracao = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 6.9 4.5c2.1 0 3.6 1.2 5.1 3 1.5-1.8 3-3 5.1-3 3.5 0 5.5 3.5 4.2 6.8-1.8 4.6-9.3 9.2-9.3 9.2Z"/></svg>';
-  const nomeDe = id => document.querySelector(`#grade .peca[data-id="${id}"] h3`)?.textContent || 'esta peça';
+  const nomeDe = id => document.querySelector(`#grade .peca[data-modelo="${id}"] h3`)?.textContent || 'esta peça';
 
   function pintar(botao) {
     const id = botao.dataset.favorito, ativo = favoritos.has(id);
@@ -49,7 +49,7 @@
     if (!catalogo) return;
     const ativo = filtroBotao?.getAttribute('aria-pressed') === 'true';
     let visiveis = 0;
-    if (ativo) catalogo.querySelectorAll('.peca').forEach(card => { const h = !favoritos.has(card.dataset.id); if (card.hidden !== h) card.hidden = h; if (!h) visiveis++; });
+    if (ativo) catalogo.querySelectorAll('.peca').forEach(card => { const h = !favoritos.has(card.dataset.modelo); if (card.hidden !== h) card.hidden = h; if (!h) visiveis++; });
     let vazio = document.querySelector('.favoritos-vazio');
     if (!vazio) {
       vazio = document.createElement('p');
@@ -63,12 +63,12 @@
   function decorar() {
     document.querySelectorAll('.grade-catalogo .peca').forEach(card => {
       const foto = card.querySelector('.foto');
-      if (foto && !foto.querySelector('.favorito')) foto.append(criarBotao(card.dataset.id, false));
+      if (foto && !foto.querySelector('.favorito')) foto.append(criarBotao(card.dataset.modelo, false));
     });
     const info = document.querySelector('.detalhe-loja .detalhe-info');
     const ativa = document.querySelector('#grade .peca.selecionada');
     if (info && ativa && !info.querySelector('.favorito')) {
-      info.querySelector('.detalhe-marca')?.after(criarBotao(ativa.dataset.id, true));
+      info.querySelector('.detalhe-marca')?.after(criarBotao(ativa.dataset.modelo, true));
     }
     document.querySelectorAll('[data-favorito]').forEach(pintar);
     atualizarFiltro();

@@ -501,3 +501,8 @@ body {overflow-x:clip;}
 .cenario-boutique:not(.modo-outras) #grade .tem-recorte .galeria img,
 .cenario-boutique:not(.modo-outras) #grade .tem-recorte.em-destaque .foto > img,
 .cenario-boutique:not(.modo-outras) #grade .tem-recorte.em-destaque .galeria img {filter:none!important;box-shadow:none!important;}
+
+.cenario-boutique:not(.modo-outras) #grade .peca.esgotada { display: none; }
+.cor-peca { display: grid; gap: 6px; margin: 12px 0; }
+.cor-peca select { width: 100%; padding: 8px 10px; border: 1px solid #dfc6b2; border-radius: 6px; background: var(--papel, #fffaf6); color: var(--marrom); font: inherit; }
+.cor-peca + .tamanhos[hidden], .peca .selo[hidden] { display: none; }

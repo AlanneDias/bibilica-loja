@@ -253,7 +253,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (max-width: 340px) { .btn { flex-basis: 100%; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
-<link rel="stylesheet" href="loja.css?v=20261115-topomobile"><link rel="stylesheet" href="favoritos.css?v=20261116">
+<link rel="stylesheet" href="loja.css?v=20261122-cores"><link rel="stylesheet" href="favoritos.css?v=20261116">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1183,21 +1183,64 @@ document.addEventListener("scroll", e => {
 }, true);
 
 /* Vitrine */
+const coresPorModelo = new Map();
+const modeloPorPeca = new Map();
+for (const p of PECAS.filter(p => p.categoria === "Acessório")) {
+  const [nome, cor] = p.nome.split(" – ");
+  if (!cor) continue;
+  const variantes = coresPorModelo.get(nome) || [];
+  variantes.push({ p, cor });
+  coresPorModelo.set(nome, variantes);
+  modeloPorPeca.set(p.id, { nome, variantes });
+}
+const modeloFavorito = id => modeloPorPeca.get(id)?.variantes[0].p.id || id;
+const corEscolhida = new Map();
+
+function mostrarCor(card, id) {
+  const p = peca(id);
+  const modelo = modeloPorPeca.get(id);
+  if (!card || !modelo || card.dataset.modelo !== modeloFavorito(id)) return;
+  const fora = esgotada(p);
+  card.dataset.id = id;
+  card.classList.toggle("esgotada", fora);
+  const img = card.querySelector(".foto img");
+  img.src = p.foto;
+  img.alt = p.nome;
+  card.querySelector(".ref").textContent = "Ref. " + id;
+  card.querySelector(".selo").hidden = !fora;
+  card.querySelector(".seletor-cor").value = id;
+  const tam = card.querySelector('input[type="radio"]');
+  tam.disabled = fora;
+  tam.checked = !fora;
+  const add = card.querySelector('[data-acao="add"]');
+  add.disabled = fora;
+  add.textContent = fora ? "Esgotado" : "Adicionar à sacola";
+  card.querySelector("output").textContent = 1;
+  const aviso = card.querySelector(".aviso");
+  aviso.textContent = "";
+  aviso.classList.remove("erro");
+  msgEstoque(card);
+}
 const grade = document.getElementById("grade");
 function montarVitrine() {
-const ordem = [...PECAS].filter(p => !(ESCONDER_ESGOTADAS && esgotada(p))).sort((a, b) => esgotada(a) - esgotada(b));
-grade.innerHTML = ordem.map(p => { const fora = esgotada(p); return `
-  <article class="peca${fora ? " esgotada" : ""}" data-id="${p.id}" data-tipo="${esc(tipo(p))}" data-faixas="${[...new Set(p.tamanhos.filter(t => estoque(p.id, t) > 0).map(faixa))].join(" ")}">
-    <div class="foto">${galeria(p)}<span class="ref">Ref. ${p.id}</span>${fora ? `<span class="selo">Esgotado</span>` : ""}</div>
+const ordem = PECAS.filter(p => modeloFavorito(p.id) === p.id).map(p => {
+  const modelo = modeloPorPeca.get(p.id);
+  if (!modelo) return p;
+  return peca(corEscolhida.get(modelo.nome)) || modelo.variantes.find(({p}) => !esgotada(p))?.p || p;
+}).filter(p => !(ESCONDER_ESGOTADAS && esgotada(p))).sort((a, b) => esgotada(a) - esgotada(b));
+grade.innerHTML = ordem.map(p => { const fora = esgotada(p); const modelo = modeloPorPeca.get(p.id); return `
+  <article class="peca${fora ? " esgotada" : ""}" data-id="${p.id}" data-modelo="${modeloFavorito(p.id)}" data-tipo="${esc(tipo(p))}" data-faixas="${[...new Set(p.tamanhos.filter(t => estoque(p.id, t) > 0).map(faixa))].join(" ")}">
+    <div class="foto">${galeria(p)}<span class="ref">Ref. ${p.id}</span>${fora || modelo ? `<span class="selo"${fora ? "" : " hidden"}>Esgotado</span>` : ""}</div>
     <div class="info">
-      <h3>${esc(p.nome)}</h3>
+      <h3>${esc(modelo?.nome || p.nome)}</h3>
       <p class="desc">${esc(p.descricao)}</p>
       <div class="precos">
         <span class="cartao-v">${brl(p.preco)}</span>
         <span class="parc">ou ${PARCELAS}x de ${brl(r2(p.preco / PARCELAS))} sem juros no cartão</span>
         <span class="pix"><b>${brl(pix(p.preco))}</b> no Pix ou espécie (5% off)</span>
       </div>
-      <fieldset class="tamanhos">
+      ${modelo ? `<label class="cor-peca"><span class="rotulo">Cor</span><select class="seletor-cor" aria-label="Cor de ${esc(modelo.nome)}">${modelo.variantes.map(v => `<option value="${v.p.id}"${v.p.id === p.id ? " selected" : ""}>${esc(v.cor)}${esgotada(v.p) ? " (esgotado)" : ""}</option>`).join("")}</select></label>` : ""}
+      <fieldset class="tamanhos"${modelo ? " hidden" : ""}>
         <legend class="rotulo">Tamanho</legend>
         ${(() => { const disp = p.tamanhos.filter(t => estoque(p.id, t) > 0); return p.tamanhos.map(t => { const e = estoque(p.id, t); return `<label title="${e <= 0 ? "Esgotado" : ""}"><input type="radio" name="tam-${p.id}" value="${t}"${e <= 0 ? " disabled" : ""}${disp.length === 1 && disp[0] === t ? " checked" : ""}><span>${t}</span></label>`; }).join(""); })()}
       </fieldset>
@@ -1240,6 +1283,11 @@ function filtrar() {
 
 function msgEstoque(card) {
   const sel = card.querySelector("input[type=radio]:checked"); const m = card.querySelector(".estoque-msg");
+  if (card.querySelector(".seletor-cor")) {
+    const quantidade = sel ? estoque(card.dataset.id, sel.value) : 0;
+    m.textContent = quantidade > 0 ? `${quantidade} ${quantidade === 1 ? "unidade disponível" : "unidades disponíveis"} nesta cor` : "Cor esgotada";
+    return;
+  }
   if (!sel) { m.textContent = ""; return; }
   const e = estoque(card.dataset.id, sel.value);
   m.textContent = e === 1 ? "Peça única neste tamanho" : e <= 3 ? `Últimas ${e} unidades neste tamanho` : "";
@@ -1325,7 +1373,7 @@ grade.addEventListener("click", e => {
     if (ex) ex.qtd += q; else sacola.push({ id, tam, qtd: q });
     salvar(); render();
     aviso.classList.remove("erro");
-    aviso.textContent = `Adicionado: ${q}x tamanho ${tam}.`;
+    aviso.textContent = modeloPorPeca.has(id) ? `Adicionado: ${q}× ${peca(id).nome}.` : `Adicionado: ${q}x tamanho ${tam}.`;
     out.textContent = 1;
     const bs = document.getElementById("abrir-sacola"); bs.classList.remove("pulse"); void bs.offsetWidth; bs.classList.add("pulse");
   }
@@ -1456,6 +1504,6 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 render();
 </script>
 
-<script src="encaixe-cabides.js?v=20261122-smock-lavanda"></script><script src="loja.js?v=20261122-smock-lavanda"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261116"></script>
+<script src="encaixe-cabides.js?v=20261122-smock-lavanda"></script><script src="loja.js?v=20261122-cores"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
 </body>
 </html>

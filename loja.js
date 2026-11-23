@@ -81,6 +81,8 @@
       detail.querySelector('.detalhe-imagens').append(thumbs);
     }
     const info = original.cloneNode(true);
+    const cor = info.querySelector('.seletor-cor');
+    if (cor) cor.value = activeCard.dataset.id;
     info.querySelectorAll('input').forEach(input => { input.name = 'detalhe-'+input.name; });
     detail.querySelector('.detalhe-info').append(info);
     detail.querySelector('.fechar-detalhe').onclick=()=>detail.close();
@@ -96,7 +98,24 @@
     paintDetail();
     detail.querySelector('[data-acao="'+focusAction+'"]')?.focus();
   });
+  function selecionarCor(id) {
+    const modelo = modeloPorPeca.get(id);
+    if (!modelo) return;
+    corEscolhida.set(modelo.nome, id);
+    const seletor = `.peca[data-modelo="${modeloFavorito(id)}"]`;
+    mostrarCor(grid.querySelector(seletor), id);
+    mostrarCor(catalogGrid?.querySelector(seletor), id);
+  }
+  grid.addEventListener('change', e => {
+    if (e.target.matches('.seletor-cor')) selecionarCor(e.target.value);
+  });
   detail.addEventListener('change',e=>{
+    if (activeCard && e.target.matches('.seletor-cor')) {
+      selecionarCor(e.target.value);
+      paintDetail();
+      detail.querySelector('.seletor-cor')?.focus();
+      return;
+    }
     if(!e.target.matches('input[type=radio]') || !activeCard) return;
     const input=[...activeCard.querySelectorAll('input[type=radio]')].find(i=>i.value===e.target.value);
     if(input) {input.checked=true; input.dispatchEvent(new Event('change',{bubbles:true}));paintDetail();[...detail.querySelectorAll('input')].find(i=>i.value===input.value)?.focus();}
@@ -147,10 +166,10 @@
   const railFront=document.createElement('img');railFront.className='haste-frente';railFront.src='assets/boutique-integrada.png';railFront.alt='';railFront.setAttribute('aria-hidden','true');scene.append(railFront);
   grid.querySelectorAll('.tem-recorte').forEach(fitHanger);
   const catalog=document.createElement('section');catalog.className='catalogo-completo';catalog.setAttribute('aria-labelledby','titulo-catalogo');
-  catalog.innerHTML='<div class="titulo-secao"><span class="eyebrow">Toda a coleção</span><h2 id="titulo-catalogo">Encontre sua peça favorita</h2><p>Vestidos, conjuntos e rompers para descobrir com calma.</p></div><div class="filtro filtros-catalogo" role="group" aria-label="Tipo de peça"><button type="button" data-tipo="todas" aria-pressed="true">Todas as peças</button><button type="button" data-tipo="Vestido" aria-pressed="false">Vestidos</button><button type="button" data-tipo="Conjunto" aria-pressed="false">Conjuntos</button><button type="button" data-tipo="Romper" aria-pressed="false">Rompers</button></div><div class="grade-catalogo"></div>';
+  catalog.innerHTML='<div class="titulo-secao"><span class="eyebrow">Toda a coleção</span><h2 id="titulo-catalogo">Encontre sua peça favorita</h2><p>Vestidos, conjuntos, rompers e acessórios.</p></div><div class="filtro filtros-catalogo" role="group" aria-label="Tipo de peça"><button type="button" data-tipo="todas" aria-pressed="true">Todas as peças</button><button type="button" data-tipo="Vestido" aria-pressed="false">Vestidos</button><button type="button" data-tipo="Conjunto" aria-pressed="false">Conjuntos</button><button type="button" data-tipo="Romper" aria-pressed="false">Rompers</button><button type="button" data-tipo="Acessório" aria-pressed="false">Acessórios</button></div><div class="grade-catalogo"></div>';
   scene.after(catalog);catalogGrid=catalog.querySelector('.grade-catalogo');buildCatalog();
   catalog.querySelector('.filtros-catalogo').addEventListener('click',e=>{const button=e.target.closest('button');if(!button)return;catalogType=button.dataset.tipo;catalog.querySelectorAll('.filtros-catalogo button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));applyCatalogFilter();});
-  catalogGrid.addEventListener('change',e=>{if(!e.target.matches('input[type=radio]'))return;const card=e.target.closest('.peca');const source=[...grid.querySelectorAll('.peca')].find(c=>c.dataset.id===card.dataset.id);const input=[...source.querySelectorAll('input[type=radio]')].find(i=>i.value===e.target.value);if(input){input.checked=true;input.dispatchEvent(new Event('change',{bubbles:true}));card.querySelector('output').textContent=source.querySelector('output').textContent;card.querySelector('.estoque-msg').textContent=source.querySelector('.estoque-msg').textContent;}});
+  catalogGrid.addEventListener('change',e=>{if(e.target.matches('.seletor-cor')){selecionarCor(e.target.value);return;}if(!e.target.matches('input[type=radio]'))return;const card=e.target.closest('.peca');const source=[...grid.querySelectorAll('.peca')].find(c=>c.dataset.id===card.dataset.id);const input=[...source.querySelectorAll('input[type=radio]')].find(i=>i.value===e.target.value);if(input){input.checked=true;input.dispatchEvent(new Event('change',{bubbles:true}));card.querySelector('output').textContent=source.querySelector('output').textContent;card.querySelector('.estoque-msg').textContent=source.querySelector('.estoque-msg').textContent;}});
   catalogGrid.addEventListener('click',e=>{
     const card=e.target.closest('.peca');if(!card)return;
     const source=[...grid.querySelectorAll('.peca')].find(c=>c.dataset.id===card.dataset.id);const button=e.target.closest('button');
