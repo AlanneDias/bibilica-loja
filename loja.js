@@ -45,7 +45,7 @@
     grid.querySelectorAll('.peca').forEach(source=>{
       const card=source.cloneNode(true);card.hidden=false;card.classList.remove('tem-recorte','em-destaque','selecionada','pegando');
       card.querySelector('.etiqueta-arara')?.remove();card.querySelector('.gancho-direita')?.remove();
-      card.querySelectorAll('img').forEach(img=>{img.removeAttribute('style');if(img.dataset.original)img.src=img.dataset.original;});
+      card.querySelectorAll('img').forEach(img=>{img.removeAttribute('style');if(img.dataset.original)img.src=['BIB-054','BIB-057'].includes(source.dataset.id)?img.dataset.frente:img.dataset.original;});
       card.querySelectorAll('input').forEach(input=>{input.name='catalogo-'+input.name;});
       catalogGrid.append(card);
     });
