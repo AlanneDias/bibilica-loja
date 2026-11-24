@@ -51,8 +51,18 @@
     });
     applyCatalogFilter();
   }
-  let catalogType='todas';
-  function applyCatalogFilter(){catalogGrid?.querySelectorAll('.peca').forEach(card=>{card.hidden=catalogType!=='todas'&&card.dataset.tipo!==catalogType;});}
+  const collectionTypes = new Map([
+    ['vestidos', 'Vestido'],
+    ['conjuntos', 'Conjunto'],
+    ['rompers', 'Romper'],
+    ['acessorios', 'Acessório']
+  ]);
+  let catalogType = collectionTypes.get(new URLSearchParams(window.location.search).get('colecao')) ?? 'todas';
+  function applyCatalogFilter() {
+    catalogGrid?.querySelectorAll('.peca').forEach(card => {
+      card.hidden = catalogType !== 'todas' && card.dataset.tipo !== catalogType;
+    });
+  }
   let hoverTimer,hoverCard,previewSuppressedUntil=0;
   function hidePreview(){hoverCard?.classList.remove('em-destaque');if(hoverCard){const img=hoverCard.querySelector('.foto img');if(img?.dataset.lateral)img.src=img.dataset.lateral;fitHanger(hoverCard);}hoverCard=null;}
   function showPreview(card){
@@ -169,10 +179,31 @@
   const rack=document.createElement('div');rack.className='arara-estrutura';grid.before(rack);rack.append(grid);
   const railFront=document.createElement('img');railFront.className='haste-frente';railFront.src='assets/boutique-integrada.png';railFront.alt='';railFront.setAttribute('aria-hidden','true');scene.append(railFront);
   grid.querySelectorAll('.tem-recorte').forEach(fitHanger);
-  const catalog=document.createElement('section');catalog.className='catalogo-completo';catalog.setAttribute('aria-labelledby','titulo-catalogo');
-  catalog.innerHTML='<div class="titulo-secao"><span class="eyebrow">Toda a coleção</span><h2 id="titulo-catalogo">Encontre sua peça favorita</h2><p>Vestidos, conjuntos, rompers e acessórios.</p></div><div class="filtro filtros-catalogo" role="group" aria-label="Tipo de peça"><button type="button" data-tipo="todas" aria-pressed="true">Todas as peças</button><button type="button" data-tipo="Vestido" aria-pressed="false">Vestidos</button><button type="button" data-tipo="Conjunto" aria-pressed="false">Conjuntos</button><button type="button" data-tipo="Romper" aria-pressed="false">Rompers</button><button type="button" data-tipo="Acessório" aria-pressed="false">Acessórios</button></div><div class="grade-catalogo"></div>';
-  scene.after(catalog);catalogGrid=catalog.querySelector('.grade-catalogo');buildCatalog();
-  catalog.querySelector('.filtros-catalogo').addEventListener('click',e=>{const button=e.target.closest('button');if(!button)return;catalogType=button.dataset.tipo;catalog.querySelectorAll('.filtros-catalogo button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));applyCatalogFilter();});
+  let catalog = document.getElementById('catalogo');
+  if (!catalog) {
+    // An earlier page may still be cached without the catalog markup.
+    catalog = document.createElement('section');
+    catalog.id = 'catalogo';
+    catalog.className = 'catalogo-completo';
+    catalog.setAttribute('aria-labelledby', 'titulo-catalogo');
+    catalog.innerHTML='<div class="titulo-secao"><span class="eyebrow">Toda a coleção</span><h2 id="titulo-catalogo">Encontre sua peça favorita</h2><p>Vestidos, conjuntos, rompers e acessórios.</p></div><div class="filtro filtros-catalogo" role="group" aria-label="Tipo de peça"><button type="button" data-tipo="todas" aria-pressed="true">Todas as peças</button><button type="button" data-tipo="Vestido" aria-pressed="false">Vestidos</button><button type="button" data-tipo="Conjunto" aria-pressed="false">Conjuntos</button><button type="button" data-tipo="Romper" aria-pressed="false">Rompers</button><button type="button" data-tipo="Acessório" aria-pressed="false">Acessórios</button></div><div class="grade-catalogo"></div>';
+    scene.after(catalog);
+  }
+  catalogGrid = catalog.querySelector('.grade-catalogo');
+  const catalogFilters = catalog.querySelector('.filtros-catalogo');
+  function activateCatalogFilter(type) {
+    catalogType = type;
+    catalogFilters.querySelectorAll('button[data-tipo]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.tipo === type));
+    });
+    applyCatalogFilter();
+  }
+  buildCatalog();
+  activateCatalogFilter(catalogType);
+  catalogFilters.addEventListener('click', event => {
+    const button = event.target.closest('button[data-tipo]');
+    if (button) activateCatalogFilter(button.dataset.tipo);
+  });
   catalogGrid.addEventListener('change',e=>{if(e.target.matches('.seletor-cor')){selecionarCor(e.target.value);return;}if(!e.target.matches('input[type=radio]'))return;const card=e.target.closest('.peca');const source=[...grid.querySelectorAll('.peca')].find(c=>c.dataset.id===card.dataset.id);const input=[...source.querySelectorAll('input[type=radio]')].find(i=>i.value===e.target.value);if(input){input.checked=true;input.dispatchEvent(new Event('change',{bubbles:true}));card.querySelector('output').textContent=source.querySelector('output').textContent;card.querySelector('.estoque-msg').textContent=source.querySelector('.estoque-msg').textContent;}});
   catalogGrid.addEventListener('click',e=>{
     const card=e.target.closest('.peca');if(!card)return;
@@ -203,7 +234,11 @@
     else panorama.scrollLeft=0;
     grid.querySelectorAll('.tem-recorte').forEach(fitHanger);
   }
-  requestAnimationFrame(frameMobileRack);window.addEventListener('resize',frameMobileRack);
+  requestAnimationFrame(() => {
+    frameMobileRack();
+    if (window.location.hash === '#catalogo') catalog.scrollIntoView({behavior:'instant', block:'start'});
+  });
+  window.addEventListener('resize',frameMobileRack);
   const areaTitle=document.getElementById('titulo-pecas');
   areaTitle.textContent='Um cabideiro de encantos';
   document.getElementById('filtro-tipo').addEventListener('click',e=>{
