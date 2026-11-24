@@ -75,7 +75,7 @@
   window.addEventListener('scroll',hidePreview,true);window.addEventListener('resize',hidePreview);
   window.addEventListener('resize',()=>grid.querySelectorAll('.tem-recorte').forEach(fitHanger));
   grid.addEventListener('transitionend',e=>{if(e.propertyName==='flex-grow')grid.querySelectorAll('.tem-recorte').forEach(fitHanger);});
-  const cutoutNames = new Set(['vestido-smock-vermelho-frente-alternativa','vestido-lavanda-frente','vestido-moranguinho-azul','vestido-cerejinha','vestido-abelhinha','vestido-algodao-doce','vestido-botao-de-rosa','vestido-campinho-azul','vestido-campinho','vestido-cerejeira','vestido-guirlanda','vestido-jardinzinho','vestido-laco-de-fita','vestido-marujinha','vestido-nuvem','vestido-raminho']);
+  const cutoutNames = new Set(['vestido-smock-vermelho-frente-alternativa','vestido-lavanda-frente','vestido-moranguinho-azul','vestido-cerejinha','vestido-abelhinha','vestido-algodao-doce','vestido-botao-de-rosa','vestido-campinho-azul','vestido-campinho','vestido-cerejeira','vestido-guirlanda','vestido-jardinzinho','vestido-laco-de-fita','vestido-marujinha','vestido-nuvem','vestido-nuvem-verde','vestido-raminho']);
   function paintDetail() {
     if (!activeCard) return;
     const original = activeCard.querySelector('.info');

@@ -934,6 +934,14 @@ const PECAS = [
     tamanhos: ["P (3 a 6 meses)","M (6 a 9 meses)","G (9 a 12 meses)","1 ano","2 anos","3 anos","4/5 anos","6/7 anos"],
     foto: "assets/vestido-lavanda-frente.jpg",
     fotosExtras: ["assets/vestido-lavanda-bordado.jpg","assets/vestido-lavanda-frente-alternativa.jpg"]
+  },
+  {
+    id: "BIB-058",
+    nome: "Vestido Nuvem Verde",
+    descricao: "Verde-sálvia com gola boneca rendada, entremeios de renda, florzinhas bordadas à mão e babado na barra. Acompanha calcinha.",
+    preco: 209.90,
+    tamanhos: ["2 anos"],
+    foto: "assets/vestido-nuvem-verde.jpg"
   }
 ];
 
@@ -950,6 +958,9 @@ const ESCONDER_ESGOTADAS = false; // Manter peças esgotadas visíveis, com tama
 // Tamanhos ausentes não são presumidos disponíveis.
 const ESTOQUE_PADRAO = 0;
 let ESTOQUE = {
+  "BIB-058": {
+    "2 anos": 1
+  },
   "BIB-001": {
     "1": 1,
     "2": 0,
@@ -1532,6 +1543,6 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 render();
 </script>
 
-<script src="encaixe-cabides.js?v=cabide-gola-6"></script><script src="loja.js?v=catalogo-20261124"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
+<script src="encaixe-cabides.js?v=20261124-nuvemverde"></script><script src="loja.js?v=20261124-nuvemverde"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
 </body>
 </html>
