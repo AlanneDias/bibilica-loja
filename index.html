@@ -942,6 +942,15 @@ const PECAS = [
     preco: 209.90,
     tamanhos: ["2 anos"],
     foto: "assets/vestido-nuvem-verde.jpg"
+  },
+  {
+    id: "BIB-059",
+    nome: "Vestido Pão de Mel",
+    descricao: "O xadrez delicado em tom amarelinho, a gola branca com acabamento em renda e o laço bordô formam uma combinação simplesmente encantadora.",
+    preco: 209.90,
+    tamanhos: ["G", "1 ano", "2 anos", "3 anos", "4/5 anos", "6 anos"],
+    foto: "assets/vestido-pao-de-mel.jpg",
+    fotosExtras: ["assets/vestido-pao-de-mel-real.jpg", "assets/vestido-pao-de-mel-irmas.jpg"]
   }
 ];
 
@@ -958,6 +967,14 @@ const ESCONDER_ESGOTADAS = false; // Manter peças esgotadas visíveis, com tama
 // Tamanhos ausentes não são presumidos disponíveis.
 const ESTOQUE_PADRAO = 0;
 let ESTOQUE = {
+  "BIB-059": {
+    "G": 1,
+    "1 ano": 1,
+    "2 anos": 1,
+    "3 anos": 1,
+    "4/5 anos": 1,
+    "6 anos": 1
+  },
   "BIB-058": {
     "2 anos": 1
   },
@@ -1543,6 +1560,6 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 render();
 </script>
 
-<script src="encaixe-cabides.js?v=20261124-nuvemverde"></script><script src="loja.js?v=20261124-nuvemverde"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
+<script src="encaixe-cabides.js?v=20261124-paodemel"></script><script src="loja.js?v=20261124-paodemel"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
 </body>
 </html>
