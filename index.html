@@ -18,9 +18,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="assets/laco.png">
-<title>Bibilica Boutique Infantil</title>
+<title>Vestidos infantis e roupinhas bordadas à mão | Bibilica</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Bibilica Boutique Infantil: roupas clássicas com bordado feito à mão. Monte seu carrinho e finalize pelo WhatsApp.">
+<meta name="description" content="Vestidos infantis bordados, conjuntos e rompers para bebês. Roupas tradicionais com detalhes feitos à mão e envio pelos Correios para todo o Brasil.">
+<link rel="canonical" href="https://bibilica.com.br/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Bibilica Boutique Infantil">
+<meta property="og:title" content="Vestidos infantis e roupinhas bordadas à mão | Bibilica">
+<meta property="og:description" content="Vestidos infantis bordados, conjuntos e rompers para bebês. Roupas tradicionais com detalhes feitos à mão e envio pelos Correios para todo o Brasil.">
+<meta property="og:url" content="https://bibilica.com.br/">
+<meta property="og:image" content="https://bibilica.com.br/assets/vestido-cerejinha.jpg">
+<meta property="og:image:alt" content="Vestido infantil vermelho com laços bordados à mão da Bibilica">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"OnlineStore","@id":"https://bibilica.com.br/#bibilica","name":"Bibilica Boutique Infantil","url":"https://bibilica.com.br/","description":"Vestidos infantis bordados, conjuntos e rompers para bebês. Roupas tradicionais com detalhes feitos à mão e envio pelos Correios para todo o Brasil.","logo":"https://bibilica.com.br/assets/logo.png","image":"https://bibilica.com.br/assets/vestido-cerejinha.jpg","areaServed":{"@type":"Country","name":"Brasil"},"contactPoint":{"@type":"ContactPoint","telephone":"+55-83-98832-5972","contactType":"customer service","availableLanguage":"pt-BR","areaServed":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Moda infantil clássica","itemListElement":[{"@type":"OfferCatalog","name":"Vestidos infantis","url":"https://bibilica.com.br/?colecao=vestidos#catalogo"},{"@type":"OfferCatalog","name":"Conjuntos infantis","url":"https://bibilica.com.br/?colecao=conjuntos#catalogo"},{"@type":"OfferCatalog","name":"Rompers para bebês","url":"https://bibilica.com.br/?colecao=rompers#catalogo"},{"@type":"OfferCatalog","name":"Laços e acessórios","url":"https://bibilica.com.br/?colecao=acessorios#catalogo"}]}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
@@ -285,7 +297,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="wrap">
       <span>Cartão em <strong>3x sem juros</strong></span>
       <span>Pix ou espécie com <strong>5% de desconto</strong></span>
-      <span>Frete combinado pelo WhatsApp</span>
+      <span>Envio para todo o Brasil pelos Correios</span>
     </div>
   </div>
 
@@ -321,6 +333,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <p class="contagem" id="contagem" role="status"></p>
       </div>
       <div class="grade" id="grade"></div>
+      <section id="catalogo" class="catalogo-completo" aria-labelledby="titulo-catalogo" style="scroll-margin-top: calc(106px + env(safe-area-inset-top, 0px))">
+        <div class="titulo-secao">
+          <span class="eyebrow">Toda a coleção</span>
+          <h2 id="titulo-catalogo">Encontre sua peça favorita</h2>
+          <p>Vestidos, conjuntos, rompers e acessórios.</p>
+        </div>
+        <div class="filtro filtros-catalogo" role="group" aria-label="Tipo de peça">
+          <button type="button" data-tipo="todas" aria-pressed="true">Todas as peças</button>
+          <button type="button" data-tipo="Vestido" aria-pressed="false">Vestidos</button>
+          <button type="button" data-tipo="Conjunto" aria-pressed="false">Conjuntos</button>
+          <button type="button" data-tipo="Romper" aria-pressed="false">Rompers</button>
+          <button type="button" data-tipo="Acessório" aria-pressed="false">Acessórios</button>
+        </div>
+        <div class="grade-catalogo"></div>
+      </section>
     </div>
   </section>
   <section class="abertura manifesto" aria-label="Nossa essência">
@@ -340,7 +367,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <div>
         <img class="logo-b" src="assets/logo-branco.png" alt="Bibilica" width="674" height="181">
         <div class="sub">Boutique infantil</div>
-        <p class="frase">“Vestir criança como criança é vestir a infância de encanto, leveza e liberdade. É valorizar o clássico, o delicado e cada detalhe feito à mão, respeitando a beleza de ser criança.”</p>
+        <p class="frase">Roupinhas bordadas à mão e roupas tradicionais para bebês e crianças. <a href="?colecao=vestidos#catalogo">Vestidos infantis</a>, <a href="?colecao=conjuntos#catalogo">conjuntos infantis</a>, <a href="?colecao=rompers#catalogo">rompers para bebês</a> e <a href="?colecao=acessorios#catalogo">laços e acessórios</a>. Envio pelos Correios para todo o Brasil, com frete confirmado pelo WhatsApp.</p>
       </div>
       <div>
         <h2>Cuidados com sua peça</h2>
@@ -875,7 +902,7 @@ const PECAS = [
   {
     id: "BIB-054",
     nome: "Vestido Smock Vermelho",
-    descricao: "Vestido vermelho em cambraia de linho, com bordado em ponto smock e florzinhas na frente. Tem gola e mangas com renda branca, botões e laço nas costas.",
+    descricao: "Vestido vermelho em cambraia de linho, com bordado em ponto smock (casinha de abelha) e florzinhas na frente. Tem gola e mangas com renda branca, botões e laço nas costas.",
     preco: 249.90,
     tamanhos: ["P (3 a 6 meses)","M (6 a 9 meses)","G (9 a 12 meses)","1 ano","2 anos","3 anos","4/5 anos","6/7 anos"],
     foto: "assets/vestido-smock-vermelho-frente-alternativa.jpg",
@@ -884,7 +911,7 @@ const PECAS = [
   {
     id: "BIB-055",
     nome: "Romper Smock Vermelho",
-    descricao: "Pimpão vermelho em cambraia de linho, com bordado em ponto smock, florzinhas na frente e renda branca na gola e nas mangas.",
+    descricao: "Pimpão vermelho em cambraia de linho, com bordado em ponto smock (casinha de abelha), florzinhas na frente e renda branca na gola e nas mangas.",
     preco: 169.90,
     tamanhos: ["P (3 a 6 meses)","M (6 a 9 meses)","G (9 a 12 meses)","1 ano","2 anos"],
     foto: "assets/romper-smock-vermelho-frente.jpg",
@@ -1422,16 +1449,17 @@ function render() {
 function renderTotais() {
   if (!sacola.length) return;
   const T = totais();
+  const rotuloValor = ehMoto() || ehRetirada() ? "Total" : "Subtotal";
   const linhaEntrega = ehMoto() ? `<div class="menor"><span>Moto táxi (Campina Grande)</span><span>+ ${brl(T.taxa)}</span></div>`
     : ehRetirada() ? `<div class="frete"><span>Retirada · sem frete. Endereço informado no ato do pagamento.</span></div>`
-    : ehCorreios() ? `<div class="frete"><span>Frete Correios: informado pelo WhatsApp</span></div>`
+    : ehCorreios() ? `<div class="frete"><span>Frete dos Correios à parte, informado pelo WhatsApp</span></div>`
     : `<div class="frete"><span>Escolha a entrega abaixo</span></div>`;
   elTotais.innerHTML = `
     <div class="menor"><span>Produtos</span><span>${brl(T.produtos)}</span></div>
     ${linhaEntrega}
-    <div class="grande"><span>Total no cartão</span><span>${brl(T.cartao)}</span></div>
+    <div class="grande"><span>${rotuloValor} no cartão</span><span>${brl(T.cartao)}</span></div>
     <div class="menor"><span>em até ${PARCELAS}x sem juros</span><span>${PARCELAS}x de ${brl(r2(T.cartao / PARCELAS))}</span></div>
-    <div class="grande"><span>Total no Pix ou espécie</span><span>${brl(T.pix)}</span></div>
+    <div class="grande"><span>${rotuloValor} no Pix ou espécie</span><span>${brl(T.pix)}</span></div>
     <div class="menor"><span>5% de desconto nos produtos</span><span></span></div>`;
 }
 const val = id => document.getElementById(id).value.trim();
@@ -1448,7 +1476,7 @@ function mensagem() {
   const temCartao = !pags.length || pags.includes("Cartão de crédito");
   const temDesconto = !pags.length || pags.some(x => x !== "Cartão de crédito");
   if (T.taxa) linhas.push(`Produtos: ${brl(T.produtos)}`, `Moto táxi: ${brl(T.taxa)}`, "");
-  const comFrete = T.taxa ? " com entrega" : "";
+  const comFrete = T.taxa ? " com entrega" : ehCorreios() ? " sem frete" : "";
   if (temCartao) linhas.push(`*Total no cartão${comFrete}:* ${brl(T.cartao)} (até ${PARCELAS}x de ${brl(r2(T.cartao / PARCELAS))} sem juros)`);
   if (temDesconto) linhas.push(`*Total no Pix ou espécie${comFrete}:* ${brl(T.pix)} (5% de desconto nos produtos)`);
   linhas.push("");
@@ -1504,6 +1532,6 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 render();
 </script>
 
-<script src="encaixe-cabides.js?v=cabide-gola-6"></script><script src="loja.js?v=cabide-gola-6"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
+<script src="encaixe-cabides.js?v=cabide-gola-6"></script><script src="loja.js?v=catalogo-20261124"></script><script src="zoom.js?v=20261115-topomobile"></script><script src="favoritos.js?v=20261122-cores"></script>
 </body>
 </html>
