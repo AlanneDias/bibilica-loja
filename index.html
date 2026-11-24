@@ -966,6 +966,8 @@ const ESCONDER_ESGOTADAS = false; // Manter peças esgotadas visíveis, com tama
 // Estoque conferido em 19/11/2026; usado se a leitura online falhar.
 // Tamanhos ausentes não são presumidos disponíveis.
 const ESTOQUE_PADRAO = 0;
+// Enquanto estas peças não ganham linhas na planilha, vale o estoque abaixo.
+const PECAS_NOVAS_SEM_PLANILHA = ["BIB-058", "BIB-059"];
 let ESTOQUE = {
   "BIB-059": {
     "G": 1,
@@ -1389,6 +1391,8 @@ async function carregarPlanilha() {
     });
     if (Object.keys(novo).length < 20) throw new Error("planilha retornou poucos produtos; mantendo estoque de segurança");
     const zerados = Object.entries(novo).flatMap(([ref, t]) => Object.entries(t).filter(([, q]) => q <= 0).map(([tam]) => `${ref} ${tam}`));
+    // Peças novas que ainda não estão na planilha usam o estoque cadastrado no site.
+    PECAS_NOVAS_SEM_PLANILHA.forEach(ref => { if (!novo[ref] && ESTOQUE[ref]) novo[ref] = ESTOQUE[ref]; });
     ESTOQUE = novo; ajustarSacola(); salvar(); montarVitrine(); render();
     diagnostico(`✓ Planilha lida às ${new Date().toLocaleTimeString("pt-BR")} · ${dados.length} linhas · zerados: ${zerados.join(", ") || "nenhum"}`, true);
   } catch (e) {
