@@ -19,3 +19,5 @@ Atualização 15/11/2026 — imagens pelo recurso integrado de geração/ediçã
 As fotos da modelo e do vestido fornecidas pela cliente permanecem em assets/vestido-moranguinho-azul*.jpg.
 
 Cenário ampliado: assets/boutique-cabideiro-amplo.png. Edição integrada de imagens: ampliar somente o cabideiro de madeira horizontalmente, preservar altura, ambiente floral, iluminação e piso; sem roupas ou cestas na imagem de fundo.
+
+Atualização 25/11/2026 — assets/laterais/vestido-pao-de-mel.png: lateral gerada por IA a partir da foto assets/vestido-pao-de-mel.jpg (peça girada, gola e laço voltados para a direita) e enviada pela loja; fundo bege e sombra removidos para a transparência. Encaixe no cabide: woodX 555, woodY 138.
